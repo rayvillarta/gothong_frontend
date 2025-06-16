@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Vessel Management | Smart Port</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/static/ADMIN/vessels.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar Navigation -->
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <i class="fas fa-anchor logo-icon"></i>
+            <span class="logo-text">SMART PORT</span>
+            <button class="collapse-btn">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="admin-dashboard.html" class="nav-link">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item expanded">
+            <a href="#" class="nav-link active">
+              <i class="fas fa-ship"></i>
+              <span>Vessels</span>
+            </a>
+            <ul class="nav-sub-menu" style="height: auto">
+              <li>
+                <a href="admin-vessels.html" class="nav-sub-link active">
+                  <i class="fas fa-list"></i>
+                  <span>View All Vessels</span>
+                </a>
+              </li>
+              <li>
+                <a href="upcoming-vessels.html" class="nav-sub-link">
+                  <i class="fas fa-calendar-alt"></i>
+                  <span>Upcoming Vessels</span>
+                </a>
+              </li>
+              <li>
+                <a href="add-vessel.html" class="nav-sub-link">
+                  <i class="fas fa-plus-circle"></i>
+                  <span>Add Vessel</span>
+                </a>
+              </li>
+              <li>
+                <a href="vessel-activity-log.html" class="nav-sub-link">
+                  <i class="fas fa-history"></i>
+                  <span>Activity Log</span>
+                </a>
+              </li>
+              <li>
+                <a href="assign-route.html" class="nav-sub-link">
+                  <i class="fas fa-route"></i>
+                  <span>Assign Route</span>
+                </a>
+              </li>
+              <li>
+                <a href="voyage-report.html" class="nav-sub-link">
+                  <i class="fas fa-file-alt"></i>
+                  <span>Voyage Report</span>
+                </a>
+              </li>
+              <li>
+                <a href="shipping-details.html" class="nav-sub-link">
+                  <i class="fas fa-info-circle"></i>
+                  <span>Shipping Details</span>
+                </a>
+              </li>
+              <li>
+                <a href="shipping-verification.html" class="nav-sub-link">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Shipping Verification</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="admin-users.html" class="nav-link">
+              <i class="fas fa-users"></i>
+              <span>Users</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="admin-manifests.html" class="nav-link">
+              <i class="fas fa-file-alt"></i>
+              <span>Manifests</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="admin-reports.html" class="nav-link">
+              <i class="fas fa-chart-line"></i>
+              <span>Reports</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fas fa-cog"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Main Content Area -->
+      <div class="main-content">
+        <!-- Top Bar -->
+        <div class="topbar">
+          <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search vessels..." />
+          </div>
+
+          <div class="user-menu">
+            <button class="notification-btn">
+              <i class="fas fa-bell"></i>
+              <span class="notification-badge">3</span>
+            </button>
+
+            <div class="user-profile">
+              <div class="user-avatar">AD</div>
+              <span class="user-name">Admin User</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+          <div class="page-header">
+            <div class="page-title">
+              <h1>Vessel Management</h1>
+              <p>Manage, track, and monitor all vessel operations</p>
+            </div>
+            <button class="btn btn-secondary">
+              <i class="fas fa-plus"></i> New Vessel
+            </button>
+          </div>
+
+          <!-- Main Sections -->
+          <div class="main-sections">
+            <!-- Vessels Section -->
+            <div class="section">
+              <div class="section-header">
+                <h2 class="section-title">Active Vessels</h2>
+              </div>
+
+              <div class="table-responsive">
+                <table class="vessels-table">
+                  <thead>
+                    <tr>
+                      <th>
+                        <button
+                          class="sort-btn"
+                          data-column="0"
+                          data-order="none"
+                        >
+                          Vessel Name <i class="fas fa-sort"></i>
+                        </button>
+                      </th>
+                      <th>
+                        <button
+                          class="sort-btn"
+                          data-column="0"
+                          data-order="none"
+                        >
+                          Type <i class="fas fa-sort"></i>
+                        </button>
+                      </th>
+                      <th>
+                        <button
+                          class="sort-btn"
+                          data-column="0"
+                          data-order="none"
+                        >
+                          IMO <i class="fas fa-sort"></i>
+                        </button>
+                      </th>
+                      <th>
+                        <button
+                          class="sort-btn"
+                          data-column="0"
+                          data-order="none"
+                        >
+                          Capacity <i class="fas fa-sort"></i>
+                        </button>
+                      </th>
+                      <th>
+                        <button
+                          class="sort-btn"
+                          data-column="0"
+                          data-order="none"
+                        >
+                          ETA <i class="fas fa-sort"></i>
+                        </button>
+                      </th>
+                      <th>
+                        <button
+                          class="sort-btn"
+                          data-column="0"
+                          data-order="none"
+                        >
+                          Actions
+                        </button>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Manila Bay Express</td>
+                      <td>Container Ship</td>
+                      <td>9876543</td>
+                      <td>25,000 tons</td>
+                      <td>June 14, 2025 08:00</td>
+                      <td>
+                        <button class="btn-icon edit">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn-icon delete">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Cebu Pearl</td>
+                      <td>Bulk Carrier</td>
+                      <td>1234567</td>
+                      <td>100, 100 tons</td>
+                      <td>Today, 11:30</td>
+                      <td>
+                        <button class="btn-icon edit">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn-icon delete">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Cebu Pearl</td>
+                      <td>Bulk Carrier</td>
+                      <td>1234567</td>
+                      <td>100, 100 tons</td>
+                      <td>Today, 11:30</td>
+                      <td>
+                        <button class="btn-icon edit">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn-icon delete">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Cebu Pearl</td>
+                      <td>Bulk Carrier</td>
+                      <td>1234567</td>
+                      <td>100, 100 tons</td>
+                      <td>Today, 11:30</td>
+                      <td>
+                        <button class="btn-icon edit">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn-icon delete">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div class="modal-overlay" id="notificationModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h2 class="modal-title">Notifications</h2>
+          <button class="modal-close" id="closeNotificationModal">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul class="notification-list">
+            <li class="notification-item">
+              <div class="notification-icon danger">
+                <i class="fas fa-exclamation-triangle"></i>
+              </div>
+              <div class="notification-content">
+                <h4 class="notification-title">Vessel Delay Alert</h4>
+                <p class="notification-message">
+                  Manila Bay Express has reported a delay due to weather
+                  conditions.
+                </p>
+                <span class="notification-time">10 minutes ago</span>
+              </div>
+            </li>
+            <li class="notification-item">
+              <div class="notification-icon info">
+                <i class="fas fa-info-circle"></i>
+              </div>
+              <div class="notification-content">
+                <h4 class="notification-title">New Manifest Uploaded</h4>
+                <p class="notification-message">
+                  Cebu Pearl has uploaded a new cargo manifest for review.
+                </p>
+                <span class="notification-time">1 hour ago</span>
+              </div>
+            </li>
+            <li class="notification-item">
+              <div class="notification-icon warning">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="notification-content">
+                <h4 class="notification-title">Inspection Scheduled</h4>
+                <p class="notification-message">
+                  Scheduled inspection for Mindanao Explorer at Dock 3 tomorrow.
+                </p>
+                <span class="notification-time">3 hours ago</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <a href="#">View All Notifications</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="/static/ADMIN/vessels.js"></script>
+  </body>
+</html>
