@@ -561,6 +561,10 @@ document.addEventListener("click", (event) => {
 
 // EDIT PROFILE OPEN MODAL TOPBAR
 document.addEventListener("DOMContentLoaded", () => {
+  // SIDEBAR:
+  const sidebarEditProfileBtn = document.getElementById(
+    "sidebarEditProfileBtn"
+  );
   const editProfileModal = document.getElementById("editProfileModal");
   const openEditProfileBtn = document.getElementById("editProfileBtn");
   const closeEditProfileModalBtn = document.getElementById(
@@ -574,6 +578,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const editableFields = ["firstName", "lastName"];
   // OPEN MODAL:
+  sidebarEditProfileBtn.addEventListener("click", () => {
+    editProfileModal.style.display = "flex";
+  });
   openEditProfileBtn.addEventListener("click", () => {
     editProfileModal.style.display = "flex";
   });
@@ -618,6 +625,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // });
 
   // CHANGE PASSWORD MODAL:
+  const sidebarChangePassword = document.getElementById(
+    "sidebarChangePassword"
+  );
   const changePassModal = document.getElementById("changePasswordModal");
   const openPasswordModal = document.getElementById("changePasswordBtn");
   const closePasswordModal = document.getElementById("changePasswordCloseBtn");
@@ -628,6 +638,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const errorDiv = document.getElementById("changePasswordError");
 
   // OPEN CHANGE PASSWORD MODAL:
+  sidebarChangePassword.addEventListener("click", () => {
+    changePassModal.style.display = "flex";
+  });
   openPasswordModal.addEventListener("click", () => {
     changePassModal.style.display = "flex";
   });
@@ -679,7 +692,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("click", function (e) {
     if (e.target === editProfileModal) {
-      modal.style.display = "none";
+      editProfileModal.style.display = "none";
     }
     if (e.target === changePassModal) {
       changePassModal.style.display = "none";
