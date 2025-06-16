@@ -304,23 +304,6 @@
           <div id="mapSection" class="section">
             <div class="section-header">
               <h2 class="section-title">Philippine Maritime Tracking</h2>
-              <div class="filter-wrapper">
-                <i class="fas fa-filter filter-icon" id="filterToggle"></i>
-                <div class="filter-dropdown" id="filterDropdown">
-                  <label
-                    ><input type="checkbox" name="filter" value="vessel" />
-                    Vessel Name</label
-                  ><br />
-                  <label
-                    ><input type="checkbox" name="filter" value="eta" />
-                    ETA</label
-                  ><br />
-                  <label
-                    ><input type="checkbox" name="filter" value="status" />
-                    Status</label
-                  >
-                </div>
-              </div>
             </div>
 
             <div id="vessel-map"></div>
@@ -339,12 +322,60 @@
                 <table class="vessels-table">
                   <thead>
                     <tr>
-                      <th>Vessel Name</th>
-                      <th>Type</th>
-                      <th>Origin</th>
-                      <th>Destination</th>
-                      <th>Status</th>
-                      <th>ETA</th>
+                      <th>
+                        <button
+                          class="sort-btn"
+                          data-column="0"
+                          data-order="none"
+                        >
+                          Vessel Name <i class="fas fa-sort"></i>
+                        </button>
+                      </th>
+                      <th>
+                        <button
+                          class="sort-btn"
+                          data-column="1"
+                          data-order="none"
+                        >
+                          Type <i class="fas fa-sort"></i>
+                        </button>
+                      </th>
+                      <th>
+                        <button
+                          class="sort-btn"
+                          data-column="2"
+                          data-order="none"
+                        >
+                          Origin <i class="fas fa-sort"></i>
+                        </button>
+                      </th>
+                      <th>
+                        <button
+                          class="sort-btn"
+                          data-column="3"
+                          data-order="none"
+                        >
+                          Destination <i class="fas fa-sort"></i>
+                        </button>
+                      </th>
+                      <th>
+                        <button
+                          class="sort-btn"
+                          data-column="4"
+                          data-order="none"
+                        >
+                          Status <i class="fas fa-sort"></i>
+                        </button>
+                      </th>
+                      <th>
+                        <button
+                          class="sort-btn"
+                          data-column="5"
+                          data-order="none"
+                        >
+                          ETA <i class="fas fa-sort"></i>
+                        </button>
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -636,5 +667,6 @@
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="/static/ADMIN/dashboard.js"></script>
+    <script src="/static/ADMIN/dashboard-map.js"></script>
   </body>
 </html>

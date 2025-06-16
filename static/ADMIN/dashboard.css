@@ -384,7 +384,7 @@ h6 {
   position: absolute;
   top: 60px;
   right: 20px;
-  background-color: var(--light);
+  background-color: white;
   color: var(--primary);
   border: 1px solid var(--gray);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -585,7 +585,15 @@ h6 {
   max-width: 100%;
   overflow-x: hidden;
 }
-
+/* REMOVE BORDER RADIUS OF THE MAP CONTAINER */
+#mapSection {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#activeVesselsSection {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
 .section-header {
   display: flex;
   justify-content: space-between;
@@ -633,6 +641,21 @@ h6 {
 
 .vessels-table tr:hover td {
   background-color: rgba(70, 130, 180, 0.05);
+}
+
+.sort-btn {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: inherit;
+}
+
+.sort-btn i {
+  font-size: 12px;
 }
 
 .status-badge {
@@ -684,7 +707,7 @@ h6 {
 
 /* Map Container */
 #vessel-map {
-  height: 300px;
+  height: 800px;
   border-radius: 8px;
   margin-top: 1rem;
   z-index: 1;
