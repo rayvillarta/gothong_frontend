@@ -238,6 +238,12 @@ document.addEventListener("DOMContentLoaded", function () {
         .closest("th")
         .classList.contains("status-column");
 
+      // CHECK IF ITS THE ETA; ETA>= NOW
+      const isETA = button
+        .closest("th")
+        .textContent.toLowerCase()
+        .includes("eta");
+
       const sortedRows = rows.sort((a, b) => {
         const valA = a.children[colIndex].textContent.trim().toLowerCase();
         const valB = b.children[colIndex].textContent.trim().toLowerCase();
@@ -247,6 +253,86 @@ document.addEventListener("DOMContentLoaded", function () {
           const aPriority = statusPriority[valA] || 99;
           const bPriority = statusPriority[valB] || 99;
           return isAsc ? aPriority - bPriority : bPriority - aPriority;
+        }
+
+        // PARSE DATE FUNCTION TO FOLLOW THIS FORMAT: Jun 14, 2025 – 08:00 AM
+        const parseDate = (text) => {
+          const toPHTime = (date) => {
+            const utc = date.getTime() + date.getTimezoneOffset() * 60000;
+            return new Date(utc + 8 * 60 * 1000 * 60); // UTC+8
+          };
+
+          if (text.toLowerCase().includes("today")) {
+            const nowPH = toPHTime(new Date());
+            const timePart = text.split("–")[1]?.trim(); // e.g. "08:00 AM"
+            const [time, period] = timePart.split(" ");
+            let [hours, minutes] = time.split(":").map(Number);
+
+            if (period === "PM" && hours < 12) hours += 12;
+            if (period === "AM" && hours === 12) hours = 0;
+
+            nowPH.setHours(hours, minutes, 0, 0);
+            return nowPH;
+          }
+
+          // Format: "Jun 14, 2025 – 08:00 AM"
+          const regex =
+            /^([A-Za-z]{3}) (\d{1,2}), (\d{4})\s–\s(\d{2}):(\d{2}) (AM|PM)$/;
+          const match = text.match(regex);
+
+          if (match) {
+            const [, monthAbbr, day, year, hourStr, minuteStr, period] = match;
+
+            const monthMap = {
+              Jan: 0,
+              Feb: 1,
+              Mar: 2,
+              Apr: 3,
+              May: 4,
+              Jun: 5,
+              Jul: 6,
+              Aug: 7,
+              Sep: 8,
+              Oct: 9,
+              Nov: 10,
+              Dec: 11,
+            };
+
+            const month = monthMap[monthAbbr];
+            let hour = Number(hourStr);
+            const minute = Number(minuteStr);
+
+            // convert to 24-hour format
+            if (period === "PM" && hour < 12) hour += 12;
+            if (period === "AM" && hour === 12) hour = 0;
+
+            const date = new Date(Date.UTC(year, month, day, hour, minute));
+            return toPHTime(date);
+          }
+
+          // fallback
+          return toPHTime(new Date(text));
+        };
+
+        // IF ETA:
+        if (isETA) {
+          const now = (() => {
+            const d = new Date();
+            const utc = d.getTime() + d.getTimezoneOffset() * 60000;
+            return new Date(utc + 8 * 60 * 60 * 1000); // PH time now
+          })();
+
+          const aDate = parseDate(valA);
+          const bDate = parseDate(valB);
+
+          const aPast = aDate < now;
+          const bPast = bDate < now;
+
+          //past dates at the bottom:
+          if (aPast && !bPast) return 1;
+          if (!aPast && bPast) return -1;
+
+          return isAsc ? aDate - bDate : bDate - aDate;
         }
 
         return isAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
