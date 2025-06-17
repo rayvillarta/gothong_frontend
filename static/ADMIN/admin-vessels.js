@@ -198,5 +198,63 @@ document.addEventListener("DOMContentLoaded", function () {
       select.addEventListener("change", commitChange);
     });
   });
+
+  // SORT TABLE:
+  const statusPriority = {
+    "in transit": 1,
+    arrived: 2,
+    delayed: 3,
+    "under maintenance": 4,
+    decommissioned: 5,
+  };
+
+  document.querySelectorAll(".sort-btn").forEach((button) => {
+    button.addEventListener("click", () => {
+      const table = button.closest("table");
+      const tbody = table.querySelector("tbody");
+      const rows = Array.from(tbody.querySelectorAll("tr"));
+      const currentOrder = button.getAttribute("data-order");
+      const isAsc = currentOrder !== "asc";
+
+      // Reset all sort icons and orders
+      table.querySelectorAll(".sort-btn").forEach((btn) => {
+        btn.setAttribute("data-order", "none");
+        const icon = btn.querySelector("i");
+        if (icon) icon.className = "fas fa-sort";
+      });
+
+      // SET CURRENT BUTTON
+      button.setAttribute("data-order", isAsc ? "asc" : "desc");
+      const sortIcon = button.querySelector("i");
+      if (sortIcon) {
+        sortIcon.className = isAsc ? "fas fa-sort-up" : "fas fa-sort-down";
+      }
+
+      // Sort the rows
+      const colIndex = button.closest("th").cellIndex;
+
+      // CHECK IF ITS THE STATUS COLUMN
+      const isStatusColumn = button
+        .closest("th")
+        .classList.contains("status-column");
+
+      const sortedRows = rows.sort((a, b) => {
+        const valA = a.children[colIndex].textContent.trim().toLowerCase();
+        const valB = b.children[colIndex].textContent.trim().toLowerCase();
+
+        // IF STATUS COLUMN:
+        if (isStatusColumn) {
+          const aPriority = statusPriority[valA] || 99;
+          const bPriority = statusPriority[valB] || 99;
+          return isAsc ? aPriority - bPriority : bPriority - aPriority;
+        }
+
+        return isAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+      });
+
+      // Re-append sorted rows
+      sortedRows.forEach((row) => tbody.appendChild(row));
+    });
+  });
 });
 // OUTSIDE DOMCONTENTLOADED
