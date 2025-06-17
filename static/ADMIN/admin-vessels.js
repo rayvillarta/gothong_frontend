@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const bPriority = statusPriority[valB] || 99;
           return isAsc ? aPriority - bPriority : bPriority - aPriority;
         }
-
+        // DI PA MUGANA, UNYA NA LNG IG NAA NAY BACKEND NAKO LIHUKON
         // PARSE DATE FUNCTION TO FOLLOW THIS FORMAT: Jun 14, 2025 – 08:00 AM
         const parseDate = (text) => {
           const toPHTime = (date) => {
@@ -341,6 +341,42 @@ document.addEventListener("DOMContentLoaded", function () {
       // Re-append sorted rows
       sortedRows.forEach((row) => tbody.appendChild(row));
     });
+  });
+
+  // DELETE VESSEL CONFIRMATION MODAL:
+  const deleteVesselModal = document.getElementById("deleteVesselModal");
+  const deleteVesselCloseBtn = document.getElementById("deleteVesselCloseBtn");
+  const deleteVesselCancelBtn = document.getElementById("cancelDeleteBtn");
+  const deleteVesselConfirmBtn = document.getElementById("confirmDeleteBtn");
+
+  let targetRowToDelete = null;
+
+  // OPEN DELETE VESSEL MODAL:
+  document.querySelectorAll(".btn-icon.delete").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      targetRowToDelete = btn.closest("tr");
+      deleteVesselModal.style.display = "flex";
+    });
+  });
+
+  // CLOSE DELETE VESSEL MODAL:
+  const btnToCloseDeleteVesselModal = [
+    deleteVesselCancelBtn,
+    deleteVesselCloseBtn,
+  ];
+  const closeVesselDeleteModal = () => {
+    deleteVesselModal.style.display = "none";
+    targetRowToDelete = null;
+  };
+  btnToCloseDeleteVesselModal.forEach((btn) => {
+    btn.addEventListener("click", () => closeVesselDeleteModal());
+  });
+  // CLOSE WHEN CLICKING OUTSIDE THE MODAL:
+  window.addEventListener("click", (e) => {
+    if (e.target === deleteVesselModal) {
+      closeVesselDeleteModal();
+    }
   });
 });
 // OUTSIDE DOMCONTENTLOADED

@@ -1001,9 +1001,10 @@ td.editable:hover {
   display: none; /* Hide submenus completely when sidebar is collapsed */
 }
 
-/* CANCEL AND UPDATE BUTTON CSS */
+/* CANCEL, DELETE AND UPDATE BUTTON CSS */
 .btn-cancel,
-.btn-update {
+.btn-update,
+.btn-delete {
   padding: 8px 14px;
   font-size: 0.95rem;
   border: none;
@@ -1012,11 +1013,40 @@ td.editable:hover {
 }
 
 .btn-cancel {
-  background-color: #ccc;
+  background-color: var(--gray);
   color: #333;
+  transition: background-color 0.2s ease-in-out;
+}
+.btn-cancel:hover {
+  background-color: var(--dark-gray);
+  color: white;
 }
 
 .btn-update {
   background-color: var(--accent);
   color: white;
+  transition: background-color 0.2s ease-in-out;
+}
+.btn-update:hover {
+  background-color: #1e6f3f;
+}
+.btn-delete {
+  background-color: var(--danger);
+  color: #fff;
+  border: none;
+  transition: background-color 0.2s ease-in-out;
+}
+.btn-delete:hover {
+  background-color: #b71c1c;
+}
+
+/* INPUT READ ONLY */
+input[readonly] {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  color: #555;
+}
+input[readonly]:focus {
+  outline: none;
+  box-shadow: none;
 }
