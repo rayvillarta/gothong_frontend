@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
     mainContent.classList.add("sidebar-collapsed-content");
   }
 
-  // EDIT ACTIVE VESSEL OPEN MODAL:
+  // ------------------ EDIT VESSEL MODAL ------------------
   const editVesselButtons = document.querySelectorAll(".btn-icon.edit");
   const editVesselModal = document.getElementById("editVesselModal");
   const closeEditVesselBtn = document.getElementById("editVesselCloseBtn");
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const vesselTypeSelect = document.getElementById("vesselType");
   const vesselCapacityInput = document.getElementById("vesselCapacity");
 
-  let orignalName = "";
+  let originalName = "";
 
   // OPEN EDIT ACTIVE VESSEL MODAL USING EVENT DELEGATION:
   editVesselButtons.forEach((btn) => {
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // VESSEL TABLE EDIT:
+  // ------------------ SORT TABLE (STATUS) ------------------
   const statusOptions = [
     "Arrived",
     "In Transit",
@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // SORT TABLE:
+  // ------------------ SORT TABLE (INCOMPLETE) ------------------
   const statusPriority = {
     "in transit": 1,
     arrived: 2,
@@ -343,7 +343,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // DELETE VESSEL CONFIRMATION MODAL:
+  // ------------------ DELETE VESSEL CONFIRMATION MODAL ------------------
   const deleteVesselModal = document.getElementById("deleteVesselModal");
   const deleteVesselCloseBtn = document.getElementById("deleteVesselCloseBtn");
   const deleteVesselCancelBtn = document.getElementById("cancelDeleteBtn");
@@ -376,6 +376,95 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("click", (e) => {
     if (e.target === deleteVesselModal) {
       closeVesselDeleteModal();
+    }
+  });
+
+  // ------------------ ADD VESSEL MODAL ------------------
+  const addVesselModal = document.getElementById("addVesselModal");
+  const addVesselBtn = document.getElementById("addVesselBtn");
+  const addVesselCloseBtn = document.getElementById("addVesselCloseBtn");
+  const addVesselCancelBtn = document.getElementById("cancelAddVesselBtn");
+
+  const addVesselForm = document.getElementById("addVesselForm");
+  const addVesselFields = addVesselForm.querySelectorAll("input, select");
+  const addVesselSubmitBtn = document.getElementById("addVesselSubmitBtn");
+
+  // OPEN ADD VESSEL MODAL:
+  addVesselBtn.addEventListener("click", () => {
+    addVesselModal.style.display = "flex";
+    // INITIAL CHECK WHEN MODAL IS OPENED:
+    clearFormValidation();
+  });
+  const clearFormValidation = () => {
+    addVesselFields.forEach((field) => {
+      field.classList.remove("valid", "invalid");
+      field.dataset.touched = "false";
+    });
+    addVesselSubmitBtn.disabled = true;
+  };
+  // Validate a field only if it's been touched (blurred)
+  const validateField = (field) => {
+    if (field.dataset.touched === "true") {
+      if (field.checkValidity()) {
+        field.classList.add("valid");
+        field.classList.remove("invalid");
+      } else {
+        field.classList.add("invalid");
+        field.classList.remove("valid");
+      }
+    }
+  };
+
+  // Run overall form validation
+  const validateForm = () => {
+    let allValid = true;
+    addVesselFields.forEach((field) => {
+      validateField(field);
+      if (!field.checkValidity()) {
+        allValid = false;
+      }
+    });
+    addVesselSubmitBtn.disabled = !allValid;
+  };
+
+  // Mark fields as touched on blur
+  addVesselFields.forEach((field) => {
+    field.dataset.touched = "false";
+
+    field.addEventListener("blur", () => {
+      field.dataset.touched = "true";
+      validateField(field);
+      validateForm();
+    });
+
+    field.addEventListener("input", () => {
+      validateForm();
+    });
+  });
+
+  const resetAddVesselForm = () => {
+    addVesselForm.reset(); // resets all input values
+    addVesselFields.forEach((field) => {
+      field.classList.remove("valid", "invalid");
+      field.dataset.touched = "false";
+    });
+    addVesselSubmitBtn.disabled = true;
+  };
+
+  // CLOSE ADD VESSEL MODAL:
+  const btnToCloseAddVesselModal = [addVesselCloseBtn, addVesselCancelBtn];
+  const closeAddVesselModal = () => {
+    addVesselModal.style.display = "none";
+    resetAddVesselForm();
+    clearFormValidation();
+  };
+  btnToCloseAddVesselModal.forEach((btn) => {
+    btn.addEventListener("click", () => closeAddVesselModal());
+  });
+  // CLOSE WHEN CLICKING OUTSIDE THE MODAL:
+  window.addEventListener("click", (e) => {
+    if (e.target === addVesselModal) {
+      closeAddVesselModal();
     }
   });
 });

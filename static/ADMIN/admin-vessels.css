@@ -678,11 +678,12 @@ td.editable:hover {
   background-color: #f8f8f8;
 }
 
-.btn-update:disabled {
-  background-color: #a7d5bc; /* desaturated version of #2d9c5a */
-  color: #ffffff;
-  cursor: not-allowed;
-  opacity: 0.7;
+/* ADD VESSEL MODAL */
+#addVesselModal .form-group input:focus,
+#addVesselModal .form-group select:focus {
+  outline: none;
+  border-color: var(--accent, #2d9c5a);
+  box-shadow: 0 0 0 2px rgba(45, 156, 90, 0.2);
 }
 
 .btn-group {
@@ -1001,7 +1002,9 @@ td.editable:hover {
   display: none; /* Hide submenus completely when sidebar is collapsed */
 }
 
-/* CANCEL, DELETE AND UPDATE BUTTON CSS */
+/* CANCEL, DELETE, ADD AND UPDATE BUTTON CSS */
+
+.btn-add,
 .btn-cancel,
 .btn-update,
 .btn-delete {
@@ -1010,6 +1013,15 @@ td.editable:hover {
   border: none;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.btn-add {
+  background-color: var(--accent, #2d9c5a);
+  color: white;
+  transition: background-color 0.2s ease-in-out;
+}
+.btn-add:hover {
+  background-color: #1e6f3f;
 }
 
 .btn-cancel {
@@ -1022,6 +1034,12 @@ td.editable:hover {
   color: white;
 }
 
+.btn-update:disabled {
+  background-color: #a7d5bc;
+  color: #ffffff;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
 .btn-update {
   background-color: var(--accent);
   color: white;
@@ -1049,4 +1067,15 @@ input[readonly] {
 input[readonly]:focus {
   outline: none;
   box-shadow: none;
+}
+
+/* ADD VESSEL INPUT STYLES */
+input.valid,
+select.valid {
+  border: 2px solid #2d9c5a; /* Green */
+}
+
+input.invalid,
+select.invalid {
+  border: 2px solid #e74c3c; /* Red */
 }
