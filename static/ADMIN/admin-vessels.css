@@ -456,7 +456,7 @@ h6 {
 .vessels-table {
   width: 100%;
   min-width: 800px; /* Minimum width to prevent squishing */
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
 }
 
 .vessels-table th {
@@ -467,6 +467,54 @@ h6 {
   color: var(--primary);
   font-size: 0.9rem;
   text-transform: uppercase;
+}
+/* FIXED WIDTH FOR THE STATUS COLUMN */
+.status-column {
+  width: 208px;
+  min-width: 208px;
+  max-width: 208px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.status-column select {
+  width: 100%;
+  box-sizing: border-box;
+}
+.to-column,
+.from-column {
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.to-column select,
+.from-column select {
+  width: 100%;
+  box-sizing: border-box;
+}
+/* DROPDOWN CSS FOR THE VESSEL TABLE */
+table.vessels-table td select {
+  width: 100%;
+  padding: 6px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  appearance: none; /* Remove default browser style */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 8L0.803848 0.5L11.1962 0.5L6 8Z' fill='%23666'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px 8px;
+}
+table.vessels-table td select:hover,
+table.vessels-table td select:focus {
+  border-color: #007bff;
+  outline: none;
 }
 
 .vessels-table td {
@@ -481,6 +529,15 @@ h6 {
 
 .vessels-table tr:hover td {
   background-color: rgba(70, 130, 180, 0.05);
+}
+
+/* EDITABLE TABLE */
+td.editable {
+  cursor: pointer;
+}
+
+td.editable:hover {
+  background-color: #f0f8ff;
 }
 
 .sort-btn {
@@ -506,7 +563,27 @@ h6 {
   font-weight: 500;
 }
 
+.status-badge.in-transit {
+  background-color: rgba(255, 193, 7, 0.15); /* amber background */
+  color: #ff9800; /* amber text */
+}
+
 .status-badge.arrived {
+  background-color: rgba(76, 175, 80, 0.15); /* green background */
+  color: #4caf50; /* green text */
+}
+
+.status-badge.under-maintenance {
+  background-color: rgba(33, 150, 243, 0.15); /* blue background */
+  color: #2196f3; /* blue text */
+}
+
+.status-badge.delayed {
+  background-color: rgba(244, 67, 54, 0.15); /* red background */
+  color: #f44336; /* red text */
+}
+
+/* .status-badge.arrived {
   background-color: rgba(45, 156, 90, 0.1);
   color: var(--accent);
 }
@@ -519,7 +596,7 @@ h6 {
 .status-badge.in-transit {
   background-color: rgba(212, 175, 55, 0.1);
   color: var(--highlight);
-}
+} */
 
 /* Add Vessel Form */
 .form-grid {
@@ -529,7 +606,7 @@ h6 {
   margin-bottom: 1.5rem;
 }
 
-.form-group {
+/* .form-group {
   margin-bottom: 1.2rem;
 }
 
@@ -574,6 +651,33 @@ h6 {
   outline: none;
   border-color: var(--light-blue);
   box-shadow: 0 0 0 3px rgba(70, 130, 180, 0.2);
+} */
+/* FOR EDIT ACTIVE VESSEL CSS */
+.form-group {
+  margin-bottom: 0.8rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--gray);
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #f8f8f8;
+}
+
+.btn-update:disabled {
+  background-color: #a7d5bc; /* desaturated version of #2d9c5a */
+  color: #ffffff;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .btn-group {
@@ -890,4 +994,24 @@ h6 {
 /* Sidebar collapsed state sub-menu styles */
 .sidebar-collapsed .nav-sub-menu {
   display: none; /* Hide submenus completely when sidebar is collapsed */
+}
+
+/* CANCEL AND UPDATE BUTTON CSS */
+.btn-cancel,
+.btn-update {
+  padding: 8px 14px;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background-color: #ccc;
+  color: #333;
+}
+
+.btn-update {
+  background-color: var(--accent);
+  color: white;
 }

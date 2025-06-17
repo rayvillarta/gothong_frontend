@@ -20,7 +20,7 @@
       href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="/static/ADMIN/vessels.css" />
+    <link rel="stylesheet" href="/static/ADMIN/admin-vessels.css" />
   </head>
   <body>
     <div class="container">
@@ -38,7 +38,7 @@
 
         <ul class="nav-menu">
           <li class="nav-item">
-            <a href="admin-dashboard.html" class="nav-link">
+            <a href="dashboard.html" class="nav-link">
               <i class="fas fa-tachometer-alt"></i>
               <span>Dashboard</span>
             </a>
@@ -122,6 +122,20 @@
               <i class="fas fa-cog"></i>
               <span>Settings</span>
             </a>
+            <ul class="nav-sub-menu">
+              <li>
+                <a href="#" id="sidebarChangePassword" class="nav-sub-link">
+                  <i class="fas fa-key"></i>
+                  <span>Change Password</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" id="sidebarEditProfileBtn" class="nav-sub-link">
+                  <i class="fas fa-user-edit"></i>
+                  <span>Edit Profile</span>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="index.html" class="nav-link">
@@ -197,22 +211,31 @@
                           Type <i class="fas fa-sort"></i>
                         </button>
                       </th>
-                      <th>
+                      <th class="from-column">
                         <button
                           class="sort-btn"
                           data-column="0"
                           data-order="none"
                         >
-                          IMO <i class="fas fa-sort"></i>
+                          Origin <i class="fas fa-sort"></i>
                         </button>
                       </th>
-                      <th>
+                      <th class="to-column">
                         <button
                           class="sort-btn"
                           data-column="0"
                           data-order="none"
                         >
-                          Capacity <i class="fas fa-sort"></i>
+                          Destination <i class="fas fa-sort"></i>
+                        </button>
+                      </th>
+                      <th class="status-column">
+                        <button
+                          class="sort-btn"
+                          data-column="0"
+                          data-order="none"
+                        >
+                          Status <i class="fas fa-sort"></i>
                         </button>
                       </th>
                       <th>
@@ -239,11 +262,20 @@
                     <tr>
                       <td>Manila Bay Express</td>
                       <td>Container Ship</td>
-                      <td>9876543</td>
-                      <td>25,000 tons</td>
+                      <td class="from-column">Manila</td>
+                      <td class="to-column">Cebu</td>
+                      <td class="status-column">
+                        <span class="status-badge arrived">Arrived</span>
+                      </td>
                       <td>June 14, 2025 08:00</td>
                       <td>
-                        <button class="btn-icon edit">
+                        <button
+                          class="btn-icon edit"
+                          data-name="Manila Bay Express"
+                          data-type="Container Ship"
+                          data-imo="9876543"
+                          data-capacity="25000"
+                        >
                           <i class="fas fa-edit"></i>
                         </button>
                         <button class="btn-icon delete">
@@ -254,11 +286,20 @@
                     <tr>
                       <td>Cebu Pearl</td>
                       <td>Bulk Carrier</td>
-                      <td>1234567</td>
-                      <td>100, 100 tons</td>
+                      <td class="from-column">Zamboanga</td>
+                      <td class="to-column">Pampanga</td>
+                      <td class="status-column">
+                        <span class="status-badge in-transit">In Transit</span>
+                      </td>
                       <td>Today, 11:30</td>
                       <td>
-                        <button class="btn-icon edit">
+                        <button
+                          class="btn-icon edit"
+                          data-name="Cebu Pearl"
+                          data-type="Bulk Carrier"
+                          data-imo="1234567"
+                          data-capacity="100100"
+                        >
                           <i class="fas fa-edit"></i>
                         </button>
                         <button class="btn-icon delete">
@@ -269,11 +310,22 @@
                     <tr>
                       <td>Cebu Pearl</td>
                       <td>Bulk Carrier</td>
-                      <td>1234567</td>
-                      <td>100, 100 tons</td>
+                      <td class="from-column">Manila</td>
+                      <td class="to-column">Davao</td>
+                      <td class="status-column">
+                        <span class="status-badge under-maintenance"
+                          >Under Maintenance</span
+                        >
+                      </td>
                       <td>Today, 11:30</td>
                       <td>
-                        <button class="btn-icon edit">
+                        <button
+                          class="btn-icon edit"
+                          data-name="Cebu Pearl"
+                          data-type="Bulk Carrier"
+                          data-imo="1234567"
+                          data-capacity="100100"
+                        >
                           <i class="fas fa-edit"></i>
                         </button>
                         <button class="btn-icon delete">
@@ -284,11 +336,20 @@
                     <tr>
                       <td>Cebu Pearl</td>
                       <td>Bulk Carrier</td>
-                      <td>1234567</td>
-                      <td>100, 100 tons</td>
+                      <td class="from-column">Davao</td>
+                      <td class="to-column">Surigao</td>
+                      <td class="status-column">
+                        <span class="status-badge delayed">Delayed</span>
+                      </td>
                       <td>Today, 11:30</td>
                       <td>
-                        <button class="btn-icon edit">
+                        <button
+                          class="btn-icon edit"
+                          data-name="Cebu Pearl"
+                          data-type="Bulk Carrier"
+                          data-imo="1234567"
+                          data-capacity="100100"
+                        >
                           <i class="fas fa-edit"></i>
                         </button>
                         <button class="btn-icon delete">
@@ -361,6 +422,81 @@
       </div>
     </div>
 
-    <script src="/static/ADMIN/vessels.js"></script>
+    <!--EDIT ACTIVE VESSEL TABLE MODAL-->
+    <div id="editVesselModal" class="modal-overlay">
+      <div class="modal">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <span class="modal-title">Edit Vessel</span>
+          <button class="modal-close" id="editVesselCloseBtn">&times;</button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <form id="editVesselForm">
+            <!-- Vessel Name (editable) -->
+            <div class="form-group">
+              <label for="vesselName">Vessel Name</label>
+              <input
+                type="text"
+                id="vesselName"
+                name="vessel_name"
+                value="M/V Example"
+              />
+            </div>
+
+            <!-- Vessel IMO (readonly) -->
+            <div class="form-group">
+              <label for="vesselIMO">Vessel IMO</label>
+              <input
+                type="text"
+                id="vesselIMO"
+                name="vessel_imo"
+                value="IMO1234567"
+                readonly
+              />
+            </div>
+
+            <!-- Vessel Type (disabled select) -->
+            <div class="form-group">
+              <label for="vesselType">Vessel Type</label>
+              <input type="text" id="vesselType" name="vessel_type" />
+            </div>
+
+            <!-- Capacity (readonly) -->
+            <div class="form-group">
+              <label for="vesselCapacity">Capacity</label>
+              <input
+                type="number"
+                id="vesselCapacity"
+                name="vessel_capacity"
+                value="1000"
+                readonly
+              />
+            </div>
+
+            <!-- Action Buttons -->
+            <div
+              class="modal-actions"
+              style="margin-top: 1.5rem; text-align: right"
+            >
+              <button type="button" id="editVesselCancelBtn" class="btn-cancel">
+                Cancel
+              </button>
+              <button
+                type="submit"
+                class="btn-update"
+                id="editVesselUpdateBtn"
+                disabled
+              >
+                Update
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="/static/ADMIN/admin-vessels.js"></script>
   </body>
 </html>
