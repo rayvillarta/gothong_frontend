@@ -391,12 +391,17 @@ body {
 
 .vessel-info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
 }
 
 .vessel-info-item {
   margin-bottom: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  flex-direction: column;
 }
 
 .vessel-info-label {
