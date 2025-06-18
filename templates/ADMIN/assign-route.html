@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Assign Route | Smart Port</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/static/ADMIN/assign-route.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar Navigation (Same as vessel-activity-log.html) -->
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <i class="fas fa-anchor logo-icon"></i>
+            <span class="logo-text">SMART PORT</span>
+            <button class="collapse-btn">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="admin-dashboard.html" class="nav-link">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item expanded">
+            <a href="#" class="nav-link active">
+              <i class="fas fa-ship"></i>
+              <span>Vessels</span>
+            </a>
+            <ul class="nav-sub-menu" style="height: auto">
+              <li>
+                <a href="admin-vessels.html" class="nav-sub-link">
+                  <i class="fas fa-list"></i> <span>View All Vessels</span>
+                </a>
+              </li>
+              <li>
+                <a href="vessel-activity-log.html" class="nav-sub-link">
+                  <i class="fas fa-history"></i>
+                  <span>Activity Log</span>
+                </a>
+              </li>
+              <li>
+                <a href="assign-route.html" class="nav-sub-link active">
+                  <i class="fas fa-route"></i>
+                  <span>Assign Route</span>
+                </a>
+              </li>
+              <li>
+                <a href="voyage-report.html" class="nav-sub-link">
+                  <i class="fas fa-file-alt"></i>
+                  <span>Voyage Report</span>
+                </a>
+              </li>
+              <li>
+                <a href="shipping-details.html" class="nav-sub-link">
+                  <i class="fas fa-info-circle"></i>
+                  <span>Shipment Review</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="admin-users.html" class="nav-link">
+              <i class="fas fa-users"></i>
+              <span>Users</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="admin-manifests.html" class="nav-link">
+              <i class="fas fa-file-alt"></i>
+              <span>Manifests</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="admin-reports.html" class="nav-link">
+              <i class="fas fa-chart-line"></i>
+              <span>Reports</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fas fa-cog"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Top Bar -->
+        <div class="topbar">
+          <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search vessels..." />
+          </div>
+
+          <div class="user-menu">
+            <button class="notification-btn">
+              <i class="fas fa-bell"></i>
+              <span class="notification-badge">3</span>
+            </button>
+
+            <div class="user-profile">
+              <div class="user-avatar">AD</div>
+              <span class="user-name">Admin User</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-header">
+          <div class="page-title">
+            <h1>Assign Route</h1>
+            <p>Select origin and destination ports to create vessel routes</p>
+          </div>
+        </div>
+
+        <div class="route-assignment-container">
+          <div class="route-form">
+            <div class="form-section">
+              <div class="form-group">
+                <label class="form-label">Select Vessel</label>
+                <select class="form-select">
+                  <option value="">Choose a vessel...</option>
+                  <option value="mv_pacific">MV Pacific Navigator</option>
+                  <option value="mv_oriental">MV Oriental Star</option>
+                  <option value="mv_manila">MV Manila Bay</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Departure Date</label>
+                <input type="date" class="form-input" />
+              </div>
+            </div>
+            <div class="form-section">
+              <div class="form-group">
+                <label class="form-label">Estimated Travel Time</label>
+                <input type="number" class="form-input" placeholder="Hours" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Cargo Type</label>
+                <select class="form-select">
+                  <option value="">Select cargo type...</option>
+                  <option value="container">Container</option>
+                  <option value="bulk">Bulk Cargo</option>
+                  <option value="liquid">Liquid Cargo</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="route-summary">
+            <h3>Selected Route</h3>
+            <div class="route-path">
+              <div class="route-point">
+                <strong>Origin:</strong> Port of Manila
+              </div>
+              <div class="route-arrow">
+                <i class="fas fa-arrow-right"></i>
+              </div>
+              <div class="route-point">
+                <strong>Destination:</strong> Select destination port
+              </div>
+            </div>
+          </div>
+
+          <h3 style="margin: 2rem 0 1rem">Available Ports</h3>
+          <div class="ports-container">
+            <!-- Major Ports -->
+            <div class="port-card">
+              <h3 class="port-name">Port of Manila</h3>
+              <div class="port-location">Manila, NCR</div>
+              <div class="port-function">
+                Largest and busiest port; includes Manila North, South, and MICT
+                terminals.
+              </div>
+            </div>
+
+            <div class="port-card">
+              <h3 class="port-name">Port of Batangas</h3>
+              <div class="port-location">Batangas City, Batangas</div>
+              <div class="port-function">
+                Handles bulk, RORO, oil, and passenger ships. Major port for
+                Luzon south of Manila.
+              </div>
+            </div>
+
+            <div class="port-card">
+              <h3 class="port-name">Port of Subic</h3>
+              <div class="port-location">Subic Bay Freeport Zone</div>
+              <div class="port-function">
+                Freeport area; multipurpose port with commercial and naval
+                operations.
+              </div>
+            </div>
+
+            <div class="port-card">
+              <h3 class="port-name">Port of Cebu</h3>
+              <div class="port-location">Cebu City, Cebu</div>
+              <div class="port-function">
+                Central Visayas hub; handles domestic and international cargo
+                and passenger traffic.
+              </div>
+            </div>
+
+            <div class="port-card">
+              <h3 class="port-name">Port of Davao</h3>
+              <div class="port-location">Davao City, Davao del Sur</div>
+              <div class="port-function">
+                Major Mindanao port; handles agri-products, containers, and
+                general cargo.
+              </div>
+            </div>
+
+            <div class="port-card">
+              <h3 class="port-name">Port of Cagayan de Oro</h3>
+              <div class="port-location">Cagayan de Oro, Misamis Oriental</div>
+              <div class="port-function">
+                Northern Mindanao hub; containerized and general cargo port.
+              </div>
+            </div>
+
+            <div class="port-card">
+              <h3 class="port-name">Port of Zamboanga</h3>
+              <div class="port-location">Zamboanga City</div>
+              <div class="port-function">
+                Major port for western Mindanao; ferry and fishing port.
+              </div>
+            </div>
+
+            <div class="port-card">
+              <h3 class="port-name">Port of Iloilo</h3>
+              <div class="port-location">Iloilo City, Iloilo</div>
+              <div class="port-function">
+                Handles general cargo, grains, and petroleum.
+              </div>
+            </div>
+
+            <!-- Other Notable Ports -->
+            <div class="port-card">
+              <h3 class="port-name">Port of General Santos</h3>
+              <div class="port-location">General Santos City</div>
+              <div class="port-function">
+                Tuna capital; supports exports and container traffic.
+              </div>
+            </div>
+
+            <div class="port-card">
+              <h3 class="port-name">Port of Puerto Princesa</h3>
+              <div class="port-location">Puerto Princesa, Palawan</div>
+              <div class="port-function">
+                Gateway to Palawan; mostly domestic cargo and tourism.
+              </div>
+            </div>
+
+            <div class="port-card">
+              <h3 class="port-name">Port of Legazpi</h3>
+              <div class="port-location">Albay</div>
+              <div class="port-function">
+                Regional port serving Bicol region.
+              </div>
+            </div>
+
+            <div class="port-card">
+              <h3 class="port-name">Port of Tacloban</h3>
+              <div class="port-location">Leyte</div>
+              <div class="port-function">Eastern Visayas gateway port.</div>
+            </div>
+          </div>
+
+          <div class="route-actions">
+            <button class="btn btn-secondary">
+              <i class="fas fa-times"></i>
+              Cancel
+            </button>
+            <button class="btn btn-primary">
+              <i class="fas fa-check"></i>
+              Assign Route
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
