@@ -193,7 +193,7 @@
         <!-- Voyage Report Detail Section (hidden initially) -->
         <div
           class="voyage-report-detail-container"
-          id="voyage-report-detail-section"
+          id="voyageReportContent"
           style="display: none"
         >
           <div class="back-button-container print-hidden">
@@ -273,13 +273,16 @@
             <button class="btn btn-primary" id="printReport">
               <i class="fas fa-print"></i> Print Report
             </button>
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" id="exportPdf">
               <i class="fas fa-download"></i> Export as PDF
             </button>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- FOR PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <script src="/static/ADMIN/voyage-report.js"></script>
   </body>

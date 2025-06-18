@@ -62,9 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const reportsListSection = document.getElementById(
     "voyage-reports-list-section"
   );
-  const reportDetailSection = document.getElementById(
-    "voyage-report-detail-section"
-  );
+  const reportDetailSection = document.getElementById("voyageReportContent");
   const reportCards = document.querySelectorAll(".voyage-report-card");
   const backToListBtn = document.getElementById("back-to-voyage-list");
 
@@ -86,12 +84,50 @@ document.addEventListener("DOMContentLoaded", function () {
   printBtn.addEventListener("click", () => {
     const originalContents = document.body.innerHTML;
     const printContents = document.getElementById(
-      "voyage-report-detail-section"
+      "voyageReportContent"
     ).innerHTML;
 
     document.body.innerHTML = printContents;
     window.print();
     document.body.innerHTML = originalContents;
     this.location.reload();
+  });
+
+  // ------------- PDF BUTTON -------------
+  const PDFBtn = document.getElementById("exportPdf");
+  PDFBtn.addEventListener("click", () => {
+    const reportElement = document.getElementById("voyageReportContent");
+    const voyageNumber =
+      document.querySelector('[data-field="voyageNumber"]')?.innerText ||
+      "voyage-report";
+    // hide the buttons:
+    const buttons = document
+      .querySelectorAll(".print-hidden")
+      .forEach((el) => (el.style.display = "none"));
+
+    const opt = {
+      margin: [1, 0, 0, 0],
+      filename: `${voyageNumber.trim().replace(/\s+/g, "-")}.pdf`,
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: {
+        scale: 2,
+        scrollY: 0,
+        windowWidth: document.body.scrollWidth,
+        windowHeight: document.body.scrollHeight,
+      },
+      jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+      pagebreak: { mode: ["avoid-all", "css", "legacy"] },
+    };
+
+    html2pdf()
+      .set(opt)
+      .from(reportElement)
+      .save()
+      .then(() => {
+        // return the button
+        document
+          .querySelectorAll(".print-hidden")
+          .forEach((el) => (el.style.display = ""));
+      });
   });
 });
