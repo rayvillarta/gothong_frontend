@@ -532,7 +532,31 @@ body {
 
 /* ----------- IG PRINT ----------- */
 @media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #voyageReportContent,
+  #voyageReportContent * {
+    visibility: visible;
+  }
+
+  #voyageReportContent {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: white;
+    padding: 2rem;
+    font-size: 12pt;
+  }
+
   .print-hidden {
     display: none !important;
+  }
+
+  @page {
+    size: A4;
+    margin: 1in;
   }
 }

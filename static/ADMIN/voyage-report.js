@@ -78,19 +78,23 @@ document.addEventListener("DOMContentLoaded", function () {
       reportsListSection.style.display = "block";
     });
   }
+  // HIDE BUTTONS
+  const hideButtons = (state) => {
+    if (state === "hide") {
+      document
+        .querySelectorAll(".print-hidden")
+        .forEach((el) => (el.style.display = "none"));
+    } else {
+      document
+        .querySelectorAll(".print-hidden")
+        .forEach((el) => (el.style.display = ""));
+    }
+  };
 
   // ------------- PRINT BUTTON -------------
   const printBtn = document.getElementById("printReport");
   printBtn.addEventListener("click", () => {
-    const originalContents = document.body.innerHTML;
-    const printContents = document.getElementById(
-      "voyageReportContent"
-    ).innerHTML;
-
-    document.body.innerHTML = printContents;
     window.print();
-    document.body.innerHTML = originalContents;
-    this.location.reload();
   });
 
   // ------------- PDF BUTTON -------------
@@ -101,10 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelector('[data-field="voyageNumber"]')?.innerText ||
       "voyage-report";
     // hide the buttons:
-    const buttons = document
-      .querySelectorAll(".print-hidden")
-      .forEach((el) => (el.style.display = "none"));
-
+    hideButtons("hide");
     const opt = {
       margin: [1, 0, 0, 0],
       filename: `${voyageNumber.trim().replace(/\s+/g, "-")}.pdf`,
@@ -125,9 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .save()
       .then(() => {
         // return the button
-        document
-          .querySelectorAll(".print-hidden")
-          .forEach((el) => (el.style.display = ""));
+        hideButtons("show");
       });
   });
 });
