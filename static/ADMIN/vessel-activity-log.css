@@ -425,19 +425,33 @@ body {
   font-size: 1.5rem;
   margin-right: 0.5rem;
 }
-
+.sticky {
+  position: sticky;
+  top: 0;
+}
 .activity-log-container {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
   margin-bottom: 2rem;
+  overflow-y: auto;
+  max-height: 500px;
 }
-
+.activity-log-container::-webkit-scrollbar {
+  height: 8px;
+}
+.activity-log-container::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 4px;
+}
+.activity-log-container::-webkit-scrollbar-track {
+  background: var(--gray);
+}
 .activity-log-table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 1rem;
+  table-layout: auto;
 }
 .log-date {
   margin: 1rem 0 0.5rem;
