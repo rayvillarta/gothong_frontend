@@ -973,6 +973,7 @@ td.editable:hover {
   transition: all 0.3s;
   font-size: 0.9rem;
   white-space: nowrap; /* Prevent text wrapping in sub-links */
+  margin-bottom: 0.2rem;
 }
 
 .nav-sub-link i {
