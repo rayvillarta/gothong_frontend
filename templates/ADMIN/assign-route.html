@@ -15,6 +15,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
+
+    <!-- FLATPICKR FOR DATE AND TIME -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
     <link rel="stylesheet" href="/static/ADMIN/assign-route.css" />
   </head>
   <body>
@@ -131,7 +137,6 @@
             </div>
           </div>
         </div>
-
         <div class="page-header">
           <div class="page-title">
             <h1>Assign Route</h1>
@@ -141,7 +146,7 @@
 
         <div class="route-assignment-container">
           <div class="route-form">
-            <div class="form-section">
+            <div class="form-section first-row">
               <div class="form-group">
                 <label class="form-label">Select Vessel</label>
                 <select class="form-select">
@@ -151,144 +156,49 @@
                   <option value="mv_manila">MV Manila Bay</option>
                 </select>
               </div>
+            </div>
+            <div class="form-section">
               <div class="form-group">
-                <label class="form-label">Departure Date</label>
-                <input type="date" class="form-input" />
+                <label class="form-label">Departure Date and Time</label>
+                <input
+                  id="departurePicker"
+                  class="form-input"
+                  placeholder="Select date and time"
+                />
               </div>
             </div>
             <div class="form-section">
               <div class="form-group">
                 <label class="form-label">Estimated Travel Time</label>
-                <input type="number" class="form-input" placeholder="Hours" />
+                <input
+                  id="etaPicker"
+                  class="form-input"
+                  placeholder="Select ETA date and time"
+                />
               </div>
+            </div>
+            <!--TO AND FROM PORTS-->
+            <div class="form-section">
               <div class="form-group">
-                <label class="form-label">Cargo Type</label>
+                <label class="form-label">Origin</label>
                 <select class="form-select">
-                  <option value="">Select cargo type...</option>
-                  <option value="container">Container</option>
-                  <option value="bulk">Bulk Cargo</option>
-                  <option value="liquid">Liquid Cargo</option>
+                  <option value="">Choose a vessel...</option>
+                  <option value="mv_pacific">MV Pacific Navigator</option>
+                  <option value="mv_oriental">MV Oriental Star</option>
+                  <option value="mv_manila">MV Manila Bay</option>
                 </select>
               </div>
             </div>
-          </div>
-
-          <div class="route-summary">
-            <h3>Selected Route</h3>
-            <div class="route-path">
-              <div class="route-point">
-                <strong>Origin:</strong> Port of Manila
+            <div class="form-section">
+              <div class="form-group">
+                <label class="form-label">Destination</label>
+                <select class="form-select">
+                  <option value="">Choose a vessel...</option>
+                  <option value="mv_pacific">MV Pacific Navigator</option>
+                  <option value="mv_oriental">MV Oriental Star</option>
+                  <option value="mv_manila">MV Manila Bay</option>
+                </select>
               </div>
-              <div class="route-arrow">
-                <i class="fas fa-arrow-right"></i>
-              </div>
-              <div class="route-point">
-                <strong>Destination:</strong> Select destination port
-              </div>
-            </div>
-          </div>
-
-          <h3 style="margin: 2rem 0 1rem">Available Ports</h3>
-          <div class="ports-container">
-            <!-- Major Ports -->
-            <div class="port-card">
-              <h3 class="port-name">Port of Manila</h3>
-              <div class="port-location">Manila, NCR</div>
-              <div class="port-function">
-                Largest and busiest port; includes Manila North, South, and MICT
-                terminals.
-              </div>
-            </div>
-
-            <div class="port-card">
-              <h3 class="port-name">Port of Batangas</h3>
-              <div class="port-location">Batangas City, Batangas</div>
-              <div class="port-function">
-                Handles bulk, RORO, oil, and passenger ships. Major port for
-                Luzon south of Manila.
-              </div>
-            </div>
-
-            <div class="port-card">
-              <h3 class="port-name">Port of Subic</h3>
-              <div class="port-location">Subic Bay Freeport Zone</div>
-              <div class="port-function">
-                Freeport area; multipurpose port with commercial and naval
-                operations.
-              </div>
-            </div>
-
-            <div class="port-card">
-              <h3 class="port-name">Port of Cebu</h3>
-              <div class="port-location">Cebu City, Cebu</div>
-              <div class="port-function">
-                Central Visayas hub; handles domestic and international cargo
-                and passenger traffic.
-              </div>
-            </div>
-
-            <div class="port-card">
-              <h3 class="port-name">Port of Davao</h3>
-              <div class="port-location">Davao City, Davao del Sur</div>
-              <div class="port-function">
-                Major Mindanao port; handles agri-products, containers, and
-                general cargo.
-              </div>
-            </div>
-
-            <div class="port-card">
-              <h3 class="port-name">Port of Cagayan de Oro</h3>
-              <div class="port-location">Cagayan de Oro, Misamis Oriental</div>
-              <div class="port-function">
-                Northern Mindanao hub; containerized and general cargo port.
-              </div>
-            </div>
-
-            <div class="port-card">
-              <h3 class="port-name">Port of Zamboanga</h3>
-              <div class="port-location">Zamboanga City</div>
-              <div class="port-function">
-                Major port for western Mindanao; ferry and fishing port.
-              </div>
-            </div>
-
-            <div class="port-card">
-              <h3 class="port-name">Port of Iloilo</h3>
-              <div class="port-location">Iloilo City, Iloilo</div>
-              <div class="port-function">
-                Handles general cargo, grains, and petroleum.
-              </div>
-            </div>
-
-            <!-- Other Notable Ports -->
-            <div class="port-card">
-              <h3 class="port-name">Port of General Santos</h3>
-              <div class="port-location">General Santos City</div>
-              <div class="port-function">
-                Tuna capital; supports exports and container traffic.
-              </div>
-            </div>
-
-            <div class="port-card">
-              <h3 class="port-name">Port of Puerto Princesa</h3>
-              <div class="port-location">Puerto Princesa, Palawan</div>
-              <div class="port-function">
-                Gateway to Palawan; mostly domestic cargo and tourism.
-              </div>
-            </div>
-
-            <div class="port-card">
-              <h3 class="port-name">Port of Legazpi</h3>
-              <div class="port-location">Albay</div>
-              <div class="port-function">
-                Regional port serving Bicol region.
-              </div>
-            </div>
-
-            <div class="port-card">
-              <h3 class="port-name">Port of Tacloban</h3>
-              <div class="port-location">Leyte</div>
-              <div class="port-function">Eastern Visayas gateway port.</div>
             </div>
           </div>
 
@@ -305,5 +215,9 @@
         </div>
       </div>
     </div>
+
+    <!-- FLATPICKER JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="/static/ADMIN/assign-route.js"></script>
   </body>
 </html>

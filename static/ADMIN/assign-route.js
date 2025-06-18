@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Sidebar toggle functionality
+  // -------------- Sidebar toggle functionality --------------
   const sidebar = document.querySelector(".sidebar");
   const mainContent = document.querySelector(".main-content");
 
@@ -67,45 +67,37 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Port card selection functionality
-  const portCards = document.querySelectorAll(".port-card");
-  let selectedPort = null;
-
-  portCards.forEach((card) => {
-    card.addEventListener("click", function () {
-      // If a port was previously selected, deselect it
-      if (selectedPort) {
-        selectedPort.classList.remove("selected");
-      }
-
-      // Select the new port
-      selectedPort = card;
-      card.classList.add("selected");
-
-      // Update the route summary
-      updateRouteSummary();
-    });
-  });
-
-  function updateRouteSummary() {
-    const destinationPoint = document.querySelectorAll(".route-point")[1];
-    if (selectedPort) {
-      destinationPoint.innerHTML = `<strong>Destination:</strong> ${
-        selectedPort.querySelector(".port-name").textContent
-      }`;
-    } else {
-      destinationPoint.innerHTML = `<strong>Destination:</strong> Select destination port`;
-    }
-  }
-
-  // Reset button functionality
-  document
-    .querySelector(".btn-secondary")
-    .addEventListener("click", function () {
-      if (selectedPort) {
-        selectedPort.classList.remove("selected");
-        selectedPort = null;
-      }
-      updateRouteSummary();
-    });
+  // -------------- FLATPICKER --------------
+  setupFlatpickr("#departurePicker");
+  setupFlatpickr("#etaPicker");
 });
+
+const centerFlatpickr = (instance) => {
+  const calendar = instance.calendarContainer;
+  const inputRect = instance._input.getBoundingClientRect();
+  const calendarRect = calendar.getBoundingClientRect();
+
+  const left = inputRect.left + inputRect.width / 2 - calendarRect.width / 2;
+  const top = inputRect.top + window.scrollY - calendarRect.height - 8; // small gap *above* input
+
+  calendar.style.position = "absolute";
+  calendar.style.left = `${left}px`;
+  calendar.style.top = `${top}px`;
+};
+
+const setupFlatpickr = (selector) => {
+  flatpickr(selector, {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    time_24hr: true,
+    minDate: "today",
+    onOpen: function (selectedDates, dateStr, instance) {
+      setTimeout(() => {
+        centerFlatpickr(instance);
+      }, 0);
+    },
+  });
+};
+
+setupFlatpickr("#departurePicker");
+setupFlatpickr("#etaPicker");
