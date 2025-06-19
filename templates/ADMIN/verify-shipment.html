@@ -129,51 +129,6 @@
 
         <!-- Main Content -->
         <section>
-          <!-- Action Bar with Filters -->
-          <div class="actions-bar">
-            <div class="filters">
-              <div class="filter-group">
-                <label class="filter-label">Sort by:</label>
-                <select class="filter-select" id="sort-select">
-                  <option value="date-desc">Newest First</option>
-                  <option value="date-asc">Oldest First</option>
-                  <option value="shipper">Shipper Name</option>
-                  <option value="status">Status</option>
-                </select>
-              </div>
-
-              <div class="filter-group">
-                <label class="filter-label">Status:</label>
-                <select class="filter-select" id="status-filter">
-                  <option value="all">All Status</option>
-                  <option value="pending">Pending Verification</option>
-                  <option value="verified">Verified</option>
-                  <option value="rejected">Rejected</option>
-                </select>
-              </div>
-
-              <div class="filter-group">
-                <label class="filter-label">Time Period:</label>
-                <select class="filter-select" id="time-filter">
-                  <option value="all">All Time</option>
-                  <option value="today">Today</option>
-                  <option value="week">This Week</option>
-                  <option value="month">This Month</option>
-                  <option value="year">This Year</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="action-buttons">
-              <button class="btn btn-outline" id="btn-export">
-                <i class="fas fa-download"></i> Export
-              </button>
-              <button class="btn btn-primary" id="btn-refresh">
-                <i class="fas fa-sync-alt"></i> Refresh
-              </button>
-            </div>
-          </div>
-
           <!-- Shipping Details Table -->
           <div class="card">
             <div class="card-header">
@@ -188,12 +143,10 @@
                 <table id="shipments-table">
                   <thead>
                     <tr>
-                      <th><input type="checkbox" id="select-all" /></th>
                       <th>ID</th>
                       <th>Shipper</th>
                       <th>Origin</th>
                       <th>Destination</th>
-                      <th>Cargo Type</th>
                       <th>Submission Date</th>
                       <th>Status</th>
                       <th>Actions</th>
@@ -201,12 +154,10 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td><input type="checkbox" class="shipment-select" /></td>
                       <td>SHP-2023-001</td>
                       <td>Oceanic Freight Co.</td>
                       <td>Manila</td>
                       <td>Singapore</td>
-                      <td>General Cargo</td>
                       <td>Jul 12, 2023</td>
                       <td><span class="badge badge-pending">Pending</span></td>
                       <td>
@@ -226,12 +177,10 @@
                       </td>
                     </tr>
                     <tr>
-                      <td><input type="checkbox" class="shipment-select" /></td>
                       <td>SHP-2023-002</td>
                       <td>Pacific Shipping Lines</td>
                       <td>Hong Kong</td>
                       <td>Manila</td>
-                      <td>Container</td>
                       <td>Jul 10, 2023</td>
                       <td>
                         <span class="badge badge-verified">Verified</span>
@@ -247,12 +196,10 @@
                       </td>
                     </tr>
                     <tr>
-                      <td><input type="checkbox" class="shipment-select" /></td>
                       <td>SHP-2023-003</td>
                       <td>Asian Marine Transport</td>
                       <td>Singapore</td>
                       <td>Hong Kong</td>
-                      <td>Reefer</td>
                       <td>Jul 09, 2023</td>
                       <td>
                         <span class="badge badge-rejected">Rejected</span>
@@ -268,12 +215,10 @@
                       </td>
                     </tr>
                     <tr>
-                      <td><input type="checkbox" class="shipment-select" /></td>
                       <td>SHP-2023-004</td>
                       <td>Global Logistics Inc.</td>
                       <td>Tokyo</td>
                       <td>Manila</td>
-                      <td>Electronics</td>
                       <td>Jul 08, 2023</td>
                       <td><span class="badge badge-pending">Pending</span></td>
                       <td>
@@ -293,12 +238,10 @@
                       </td>
                     </tr>
                     <tr>
-                      <td><input type="checkbox" class="shipment-select" /></td>
                       <td>SHP-2023-005</td>
                       <td>Cebu Shipping Lines</td>
                       <td>Cebu</td>
                       <td>Manila</td>
-                      <td>General Cargo</td>
                       <td>Jul 07, 2023</td>
                       <td><span class="badge badge-pending">Pending</span></td>
                       <td>

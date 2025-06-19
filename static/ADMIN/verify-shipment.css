@@ -283,6 +283,15 @@ body {
   margin-right: 0.5rem;
 }
 
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.page-header p {
+  color: var(--dark-gray);
+  font-size: 0.95rem;
+}
+
 /* Cards and content */
 .card {
   background-color: white;
@@ -290,18 +299,14 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   margin-bottom: 1.5rem;
   overflow: hidden;
+  padding: 1.5rem;
 }
 
 .card-header {
-  padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid var(--gray);
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.card-body {
-  padding: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .card-title {
