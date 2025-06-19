@@ -135,7 +135,7 @@
             </div>
           </div>
 
-          <div class="incident-card">
+          <div class="incident-card" data-card-id="1">
             <div class="incident-header">
               <div><strong>Incident Type:</strong> Oil Spill</div>
               <div>
@@ -153,6 +153,7 @@
               <p><strong>Date:</strong> June 20, 2025</p>
               <p><strong>Reporter:</strong> John Doe</p>
               <p><strong>Vessel:</strong> MV Pacific Explorer</p>
+              <p><strong>Location:</strong> Bisag Asa</p>
             </div>
 
             <div class="incident-description">
@@ -347,7 +348,23 @@
               <option value="Equipment Failure">Equipment Failure</option>
               <option value="Injury">Injury</option>
               <option value="Unauthorized Access">Unauthorized Access</option>
+              <option value="others">Others</option>
             </select>
+          </div>
+
+          <!-- Conditional field for custom type -->
+          <div
+            class="form-group"
+            id="otherIncidentTypeGroup"
+            style="display: none"
+          >
+            <label for="otherIncidentType">Specify Other Incident Type</label>
+            <input
+              type="text"
+              id="otherIncidentType"
+              class="form-input"
+              placeholder="e.g Title Case"
+            />
           </div>
 
           <div class="form-group">
@@ -377,6 +394,37 @@
             <button class="btn btn-create" id="submitIncidentBtn">
               Report
             </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESOLUTION MODAL -->
+    <div class="modal-overlay" id="resolutionModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h2 class="modal-title">Resolution Details</h2>
+          <button class="modal-close" id="closeResolutionModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="resolutionDescription"
+              >Describe how the issue was resolved</label
+            >
+            <textarea
+              id="resolutionDescription"
+              class="form-input"
+              rows="5"
+              placeholder="Provide a clear and detailed explanation..."
+              required
+            ></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-cancel" id="cancelResolutionBtn">
+              Cancel
+            </button>
+            <button class="btn btn-create" id="saveResolutionBtn">Save</button>
           </div>
         </div>
       </div>

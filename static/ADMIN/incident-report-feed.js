@@ -54,4 +54,63 @@ document.addEventListener("DOMContentLoaded", function () {
       reportModal.style.display = "none";
     }
   });
+
+  // SHOW THE INPUT FIELD IF THE INCIDENT TYPE IS OTHERS:
+  document
+    .getElementById("incidentType")
+    .addEventListener("change", function () {
+      const otherGroup = document.getElementById("otherIncidentTypeGroup");
+      if (this.value === "others") {
+        otherGroup.style.display = "block";
+      } else {
+        otherGroup.style.display = "none";
+      }
+    });
+
+  // RESOLUTION MODAL:
+  document.querySelectorAll(".incident-card").forEach((card) => {
+    const dropdown = card.querySelector(".status-dropdown");
+
+    dropdown.addEventListener("change", (e) => {
+      if (e.target.value === "Resolved") {
+        document.getElementById("resolutionModal").style.display = "flex";
+
+        // Optional: Save reference for use on modal save
+        document.getElementById("resolutionModal").dataset.cardId =
+          card.dataset.cardId || "";
+      }
+    });
+  });
+  // Handle modal close
+  document
+    .getElementById("closeResolutionModal")
+    .addEventListener("click", () => {
+      document.getElementById("resolutionModal").style.display = "none";
+    });
+
+  document
+    .getElementById("cancelResolutionBtn")
+    .addEventListener("click", () => {
+      document.getElementById("resolutionModal").style.display = "none";
+    });
+
+  // Save resolution (example handler)
+  document.getElementById("saveResolutionBtn").addEventListener("click", () => {
+    const resolutionText = document
+      .getElementById("resolutionDescription")
+      .value.trim();
+
+    if (!resolutionText) {
+      alert("Please describe how the issue was resolved.");
+      return;
+    }
+
+    // You can fetch the related card ID here if needed
+    const relatedCardId =
+      document.getElementById("resolutionModal").dataset.cardId;
+
+    // Process resolution logic here...
+
+    document.getElementById("resolutionModal").style.display = "none";
+  });
 });
