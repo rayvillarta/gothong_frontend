@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-  // Handle modal close
+  // Handle resolution modal close
   document
     .getElementById("closeResolutionModal")
     .addEventListener("click", () => {
@@ -112,5 +112,40 @@ document.addEventListener("DOMContentLoaded", function () {
     // Process resolution logic here...
 
     document.getElementById("resolutionModal").style.display = "none";
+  });
+
+  // CAROUSEL FOR IMAGE:
+  const images = document.querySelectorAll(".incident-image");
+  const leftBtn = document.querySelector(".left-btn");
+  const rightBtn = document.querySelector(".right-btn");
+  let currentImage = 0;
+
+  function updateCarousel(index) {
+    images.forEach((img, i) => {
+      img.classList.toggle("active", i === index);
+    });
+
+    // Show/hide buttons based on current index
+    leftBtn.style.display = index === 0 ? "none" : "flex";
+    rightBtn.style.display = index === 3 - 1 ? "none" : "flex";
+    console.log(images.length);
+  }
+
+  // Initial call
+  updateCarousel(currentImage);
+
+  // Button listeners
+  leftBtn.addEventListener("click", () => {
+    if (currentImage > 0) {
+      currentImage--;
+      updateCarousel(currentImage);
+    }
+  });
+
+  rightBtn.addEventListener("click", () => {
+    if (currentImage < images.length - 1) {
+      currentImage++;
+      updateCarousel(currentImage);
+    }
   });
 });
