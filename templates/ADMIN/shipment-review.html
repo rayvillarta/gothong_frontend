@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Shipping Verification | Smart Port</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <i class="fas fa-anchor logo-icon"></i>
+            <span class="logo-text">SMART PORT</span>
+          </div>
+          <button class="collapse-btn" id="collapse-sidebar">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="admin-dashboard.html" class="nav-link">
+              <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item expanded">
+            <a href="admin-vessels.html" class="nav-link active">
+              <i class="fas fa-ship"></i> <span>Vessels</span>
+            </a>
+            <ul class="nav-sub-menu">
+              <li>
+                <a href="admin-vessels.html" class="nav-sub-link">
+                  <i class="fas fa-list"></i> <span>View All Vessels</span>
+                </a>
+              </li>
+              <li>
+                <a href="upcoming-vessels.html" class="nav-sub-link">
+                  <i class="fas fa-calendar-alt"></i>
+                  <span>Upcoming Vessels</span>
+                </a>
+              </li>
+              <li>
+                <a href="add-vessel.html" class="nav-sub-link">
+                  <i class="fas fa-plus"></i> <span>Add New Vessel</span>
+                </a>
+              </li>
+              <li>
+                <a href="vessel-activity-log.html" class="nav-sub-link">
+                  <i class="fas fa-history"></i> <span>Activity Logs</span>
+                </a>
+              </li>
+              <li>
+                <a href="assign-route.html" class="nav-sub-link">
+                  <i class="fas fa-route"></i> <span>Assign Route</span>
+                </a>
+              </li>
+              <li>
+                <a href="voyage-report.html" class="nav-sub-link">
+                  <i class="fas fa-file-alt"></i> <span>Voyage Report</span>
+                </a>
+              </li>
+              <li>
+                <a href="shipping-details.html" class="nav-sub-link">
+                  <i class="fas fa-info-circle"></i>
+                  <span>Shipping Details</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="shipping-verification.html"
+                  class="nav-sub-link active"
+                >
+                  <i class="fas fa-check-circle"></i>
+                  <span>Shipping Verification</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="admin-users.html" class="nav-link">
+              <i class="fas fa-users"></i> <span>Users</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="admin-manifests.html" class="nav-link">
+              <i class="fas fa-file-alt"></i> <span>Manifests</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="admin-reports.html" class="nav-link">
+              <i class="fas fa-chart-line"></i> <span>Reports</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fas fa-cog"></i> <span>Settings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/index.html" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <!-- Top Bar -->
+        <div class="topbar">
+          <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search shipments..." />
+          </div>
+
+          <div class="user-menu">
+            <button class="notification-btn">
+              <i class="fas fa-bell"></i>
+              <span class="notification-badge">3</span>
+            </button>
+
+            <div class="user-profile">
+              <div class="user-avatar">AD</div>
+              <span class="user-name">Admin</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Page Header -->
+        <div class="page-header">
+          <h1>Shipping Verification</h1>
+          <p>Verify, manage and monitor all shipment details</p>
+        </div>
+
+        <!-- Main Content -->
+        <section>
+          <!-- Action Bar with Filters -->
+          <div class="actions-bar">
+            <div class="filters">
+              <div class="filter-group">
+                <label class="filter-label">Sort by:</label>
+                <select class="filter-select" id="sort-select">
+                  <option value="date-desc">Newest First</option>
+                  <option value="date-asc">Oldest First</option>
+                  <option value="shipper">Shipper Name</option>
+                  <option value="status">Status</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <label class="filter-label">Status:</label>
+                <select class="filter-select" id="status-filter">
+                  <option value="all">All Status</option>
+                  <option value="pending">Pending Verification</option>
+                  <option value="verified">Verified</option>
+                  <option value="rejected">Rejected</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <label class="filter-label">Time Period:</label>
+                <select class="filter-select" id="time-filter">
+                  <option value="all">All Time</option>
+                  <option value="today">Today</option>
+                  <option value="week">This Week</option>
+                  <option value="month">This Month</option>
+                  <option value="year">This Year</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="action-buttons">
+              <button class="btn btn-outline" id="btn-export">
+                <i class="fas fa-download"></i> Export
+              </button>
+              <button class="btn btn-primary" id="btn-refresh">
+                <i class="fas fa-sync-alt"></i> Refresh
+              </button>
+            </div>
+          </div>
+
+          <!-- Shipping Details Table -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">All Shipments</h2>
+              <span id="shipment-count" class="badge badge-pending"
+                >23 Pending Verification</span
+              >
+            </div>
+
+            <div class="card-body">
+              <div class="table-container">
+                <table id="shipments-table">
+                  <thead>
+                    <tr>
+                      <th><input type="checkbox" id="select-all" /></th>
+                      <th>ID</th>
+                      <th>Shipper</th>
+                      <th>Origin</th>
+                      <th>Destination</th>
+                      <th>Cargo Type</th>
+                      <th>Submission Date</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><input type="checkbox" class="shipment-select" /></td>
+                      <td>SHP-2023-001</td>
+                      <td>Oceanic Freight Co.</td>
+                      <td>Manila</td>
+                      <td>Singapore</td>
+                      <td>General Cargo</td>
+                      <td>Jul 12, 2023</td>
+                      <td><span class="badge badge-pending">Pending</span></td>
+                      <td>
+                        <a
+                          href="shipment-details.html?id=SHP-2023-001"
+                          class="btn btn-icon btn-outline"
+                          title="View Details"
+                        >
+                          <i class="fas fa-eye"></i>
+                        </a>
+                        <button class="btn btn-icon btn-success" title="Verify">
+                          <i class="fas fa-check"></i>
+                        </button>
+                        <button class="btn btn-icon btn-danger" title="Reject">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="shipment-select" /></td>
+                      <td>SHP-2023-002</td>
+                      <td>Pacific Shipping Lines</td>
+                      <td>Hong Kong</td>
+                      <td>Manila</td>
+                      <td>Container</td>
+                      <td>Jul 10, 2023</td>
+                      <td>
+                        <span class="badge badge-verified">Verified</span>
+                      </td>
+                      <td>
+                        <a
+                          href="shipment-details.html?id=SHP-2023-002"
+                          class="btn btn-icon btn-outline"
+                          title="View Details"
+                        >
+                          <i class="fas fa-eye"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="shipment-select" /></td>
+                      <td>SHP-2023-003</td>
+                      <td>Asian Marine Transport</td>
+                      <td>Singapore</td>
+                      <td>Hong Kong</td>
+                      <td>Reefer</td>
+                      <td>Jul 09, 2023</td>
+                      <td>
+                        <span class="badge badge-rejected">Rejected</span>
+                      </td>
+                      <td>
+                        <a
+                          href="shipment-details.html?id=SHP-2023-003"
+                          class="btn btn-icon btn-outline"
+                          title="View Details"
+                        >
+                          <i class="fas fa-eye"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="shipment-select" /></td>
+                      <td>SHP-2023-004</td>
+                      <td>Global Logistics Inc.</td>
+                      <td>Tokyo</td>
+                      <td>Manila</td>
+                      <td>Electronics</td>
+                      <td>Jul 08, 2023</td>
+                      <td><span class="badge badge-pending">Pending</span></td>
+                      <td>
+                        <a
+                          href="shipment-details.html?id=SHP-2023-004"
+                          class="btn btn-icon btn-outline"
+                          title="View Details"
+                        >
+                          <i class="fas fa-eye"></i>
+                        </a>
+                        <button class="btn btn-icon btn-success" title="Verify">
+                          <i class="fas fa-check"></i>
+                        </button>
+                        <button class="btn btn-icon btn-danger" title="Reject">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="shipment-select" /></td>
+                      <td>SHP-2023-005</td>
+                      <td>Cebu Shipping Lines</td>
+                      <td>Cebu</td>
+                      <td>Manila</td>
+                      <td>General Cargo</td>
+                      <td>Jul 07, 2023</td>
+                      <td><span class="badge badge-pending">Pending</span></td>
+                      <td>
+                        <a
+                          href="shipment-details.html?id=SHP-2023-005"
+                          class="btn btn-icon btn-outline"
+                          title="View Details"
+                        >
+                          <i class="fas fa-eye"></i>
+                        </a>
+                        <button class="btn btn-icon btn-success" title="Verify">
+                          <i class="fas fa-check"></i>
+                        </button>
+                        <button class="btn btn-icon btn-danger" title="Reject">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Pagination -->
+              <div
+                class="pagination"
+                style="
+                  display: flex;
+                  justify-content: center;
+                  margin-top: 1.5rem;
+                "
+              >
+                <button class="btn btn-outline" style="margin-right: 0.5rem">
+                  Previous
+                </button>
+                <button class="btn btn-outline" style="margin-left: 0.5rem">
+                  Next
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
