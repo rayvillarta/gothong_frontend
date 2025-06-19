@@ -129,7 +129,11 @@
         <div class="user-grid-wrapper">
           <div class="user-grid">
             <!-- Employee Cards -->
-            <div class="user-card">
+            <div
+              class="user-card userCard"
+              data-first-name="John"
+              data-last-name="Doe"
+            >
               <div class="user-header">
                 <div class="user-avatar">JD</div>
                 <div class="user-info">
@@ -138,20 +142,13 @@
                   <span class="user-status status-active">Active</span>
                 </div>
               </div>
-              <div class="user-actions">
-                <button class="action-btn" title="Edit">
-                  <i class="fas fa-edit"></i>
-                </button>
-                <button class="action-btn" title="Delete">
-                  <i class="fas fa-trash"></i>
-                </button>
-                <button class="action-btn" title="View Details">
-                  <i class="fas fa-eye"></i>
-                </button>
-              </div>
             </div>
 
-            <div class="user-card">
+            <div
+              class="user-card userCard"
+              data-first-name="Alice"
+              data-last-name="Smith"
+            >
               <div class="user-header">
                 <div class="user-avatar">AS</div>
                 <div class="user-info">
@@ -160,21 +157,10 @@
                   <span class="user-status status-active">Active</span>
                 </div>
               </div>
-              <div class="user-actions">
-                <button class="action-btn" title="Edit">
-                  <i class="fas fa-edit"></i>
-                </button>
-                <button class="action-btn" title="Delete">
-                  <i class="fas fa-trash"></i>
-                </button>
-                <button class="action-btn" title="View Details">
-                  <i class="fas fa-eye"></i>
-                </button>
-              </div>
             </div>
 
             <!-- Shipper Cards -->
-            <div class="user-card">
+            <div class="user-card userCard">
               <div class="user-header">
                 <div class="user-avatar">RJ</div>
                 <div class="user-info">
@@ -183,21 +169,10 @@
                   <span class="user-status status-active">Active</span>
                 </div>
               </div>
-              <div class="user-actions">
-                <button class="action-btn" title="Edit">
-                  <i class="fas fa-edit"></i>
-                </button>
-                <button class="action-btn" title="Delete">
-                  <i class="fas fa-trash"></i>
-                </button>
-                <button class="action-btn" title="View Details">
-                  <i class="fas fa-eye"></i>
-                </button>
-              </div>
             </div>
 
             <!-- Customs Officer Cards -->
-            <div class="user-card">
+            <div class="user-card userCard">
               <div class="user-header">
                 <div class="user-avatar">MP</div>
                 <div class="user-info">
@@ -205,17 +180,6 @@
                   <p>Customs Officer</p>
                   <span class="user-status status-inactive">Inactive</span>
                 </div>
-              </div>
-              <div class="user-actions">
-                <button class="action-btn" title="Edit">
-                  <i class="fas fa-edit"></i>
-                </button>
-                <button class="action-btn" title="Delete">
-                  <i class="fas fa-trash"></i>
-                </button>
-                <button class="action-btn" title="View Details">
-                  <i class="fas fa-eye"></i>
-                </button>
               </div>
             </div>
           </div>
@@ -319,7 +283,69 @@
       </div>
     </div>
 
-    <!--VIEW EMPLOYEE DETAILS MODAL-->
+    <!--VIEW USER DETAILS MODAL-->
+    <div class="modal-overlay" id="userProfileModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h2 class="modal-title">Admin John Doe</h2>
+          <button class="modal-close" id="closeProfileModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <!-- Profile Picture -->
+          <div class="profile-picture-wrapper">
+            <div class="profile-picture-container">
+              <img
+                src="/static/nagi.jpg"
+                alt="Admin Profile"
+                class="profile-picture"
+                id="adminProfilePic"
+              />
+              <span class="status-indicator active"></span>
+            </div>
+          </div>
+
+          <!-- Editable Fields -->
+          <div class="form-group">
+            <label for="editFirstName">First Name</label>
+            <input
+              type="text"
+              id="editFirstName"
+              class="form-input editable"
+              value="John"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <label for="editLastName">Last Name</label>
+            <input
+              type="text"
+              id="editLastName"
+              class="form-input editable"
+              value="Doe"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <label for="editEmail">Email</label>
+            <input
+              type="email"
+              id="editEmail"
+              class="form-input not-editable"
+              value="john.doe@example.com"
+              readonly
+            />
+          </div>
+
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <button class="btn btn-cancel" id="cancelProfileModal">
+              Cancel
+            </button>
+            <button class="btn btn-create" id="saveProfileChanges">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="/static/ADMIN/admin-users.js"></script>
   </body>

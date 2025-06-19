@@ -484,6 +484,11 @@ body {
 .modal-body {
   padding: 1.5rem;
 }
+.modal-footer {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
 /* Success/Failure Message Styles */
 .status-message {
   display: flex;
@@ -631,7 +636,7 @@ body {
 
 /* -------------------- USERS LIST -------------------- */
 .user-grid-wrapper {
-  max-height: 400px;
+  max-height: 380px;
   overflow-y: auto;
   padding-right: 4px; /* optional scrollbar buffer */
   border: 1px solid var(--gray); /* optional styling */
@@ -641,7 +646,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
-  margin-bottom: 2rem;
+  padding: 1.5rem;
 }
 
 .user-card {
@@ -727,7 +732,81 @@ body {
   color: var(--primary);
 }
 /* -------------------- END OF USERS LIST -------------------- */
+/* -------------------- USER MODAL -------------------- */
+.profile-picture-wrapper {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.profile-picture-container {
+  position: relative;
+  display: inline-block;
+}
 
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Status Indicator Dot */
+.status-indicator {
+  position: absolute;
+  bottom: 5px;
+  right: 16px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+/* Active = Green */
+.status-indicator.active {
+  background-color: var(--accent);
+}
+
+/* Inactive = Gray */
+.status-indicator.inactive {
+  background-color: var(--dark-gray);
+}
+
+.profile-picture:hover {
+  transform: scale(1.05);
+}
+
+input.editable[readonly] {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+input.not-editable[readonly] {
+  cursor: not-allowed;
+}
+input.not-editable:focus {
+  outline: none;
+}
+
+/* Optional fullscreen image */
+.fullscreen-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.fullscreen-image img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+/* -------------------- END OF USER MODAL -------------------- */
 @media (max-width: 768px) {
   .search-filter-section {
     flex-direction: column;

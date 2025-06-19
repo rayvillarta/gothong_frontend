@@ -86,11 +86,6 @@ document.addEventListener("DOMContentLoaded", function () {
   addAdminBtn.addEventListener("click", () => {
     addAdminModal.style.display = "flex";
   });
-  window.addEventListener("click", (e) => {
-    if (e.target === addAdminModal) {
-      closeModal(addAdminModal);
-    }
-  });
 
   // TODO: CREATE ADMIN LOGIC HERE
 
@@ -108,13 +103,70 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  addEmployeeBtn.addEventListener("click", () => {
+    addEmployeeModal.style.display = "flex";
+  });
+
+  // TODO: CREATE EMPLOYEE LOGIC HERE
+
+  // ------------- VIEW USER MODAL -------------
+  const userModal = document.getElementById("userProfileModal");
+  const closeUserModal = document.getElementById("closeProfileModal");
+  const cancelUserModal = document.getElementById("cancelProfileModal");
+  // CLOSE THE MODAL
+  const closeUserModalBtns = [closeUserModal, cancelUserModal];
+  closeUserModalBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      closeModal(userModal);
+    });
+  });
+  // ------------- CLOSE MODAL IF CLICKING OUTSIDE USING DRY PRINCIPLE -------------
   window.addEventListener("click", (e) => {
-    if (e.target === addEmployeeModal) {
-      closeModal(addEmployeeModal);
+    if (e.target.classList.contains("modal-overlay")) {
+      console.log(e.target);
+      closeModal(e.target);
     }
   });
 
-  addEmployeeBtn.addEventListener("click", () => {
-    addEmployeeModal.style.display = "flex";
+  // TRIGGER TO OPEN THE MODAL
+  document.querySelectorAll(".userCard").forEach((card) => {
+    card.addEventListener("click", () => {
+      const fname = card.dataset.firstName;
+      const lname = card.dataset.lastName;
+
+      //set modal content:
+      document.getElementById("editFirstName").innerText = fname;
+      document.getElementById("editLastName").innerText = lname;
+
+      //show modal:
+      userModal.style.display = "flex";
+
+      // Toggle fields editable on focus or click
+      document.querySelectorAll(".editable").forEach((input) => {
+        input.addEventListener("click", function () {
+          this.removeAttribute("readonly");
+          this.focus();
+        });
+      });
+
+      // TO DO: EDIT USER PROFILE LOGIC
+
+      // Fullscreen profile picture preview
+      const profilePic = document.getElementById("adminProfilePic");
+      profilePic.addEventListener("click", () => {
+        const fullscreenDiv = document.createElement("div");
+        fullscreenDiv.classList.add("fullscreen-image");
+
+        const img = document.createElement("img");
+        img.src = profilePic.src;
+
+        fullscreenDiv.appendChild(img);
+        document.body.appendChild(fullscreenDiv);
+
+        fullscreenDiv.addEventListener("click", () => {
+          document.body.removeChild(fullscreenDiv);
+        });
+      });
+    });
   });
 });
