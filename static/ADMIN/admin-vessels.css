@@ -33,7 +33,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Exo 2", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 600;
 }
 
@@ -382,7 +382,7 @@ h6 {
   color: white;
   border: none;
   border-radius: 6px;
-  font-family: "Exo 2", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;

@@ -33,7 +33,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Exo 2", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 600;
 }
 
@@ -119,13 +119,6 @@ h6 {
   font-size: 1.8rem;
   margin-right: 0.8rem;
   color: var(--highlight);
-}
-
-.logo-text {
-  font-family: "Exo 2", sans-serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  white-space: nowrap;
 }
 
 /* Sidebar collapsed state styling */
@@ -455,7 +448,7 @@ h6 {
   color: white;
   border: none;
   border-radius: 6px;
-  font-family: "Exo 2", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;

@@ -89,7 +89,7 @@ vesselMarkers.forEach((vessel) => {
   // Add popup with vessel info
   marker.bindPopup(
     `<div style="font-family: 'Montserrat', sans-serif;">
-                    <h4 style="margin: 0 0 5px 0; font-family: 'Exo 2', sans-serif;">${
+                    <h4 style="margin: 0 0 5px 0; font-family: 'Montserrat', sans-serif;">${
                       vessel.name
                     }</h4>
                     <p style="margin: 0 0 3px 0; font-size: 0.9em;">
