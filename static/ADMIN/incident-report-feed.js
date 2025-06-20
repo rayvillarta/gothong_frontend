@@ -66,6 +66,26 @@ document.addEventListener("DOMContentLoaded", function () {
         otherGroup.style.display = "none";
       }
     });
+  // SHOW IMAGE PREVIEW WHEN UPLOADING:
+  const imageInput = document.getElementById("incidentImage");
+  const previewContainer = document.getElementById("imagePreviewContainer");
+
+  imageInput.addEventListener("change", function () {
+    previewContainer.innerHTML = ""; // clear previous previews
+
+    const files = Array.from(this.files);
+    files.forEach((file) => {
+      if (!file.type.startsWith("image/")) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const img = document.createElement("img");
+        img.src = e.target.result;
+        previewContainer.appendChild(img);
+      };
+      reader.readAsDataURL(file);
+    });
+  });
 
   // RESOLUTION MODAL:
   document.querySelectorAll(".incident-card").forEach((card) => {

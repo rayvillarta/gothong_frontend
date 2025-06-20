@@ -688,6 +688,23 @@ input[type="file"].form-input {
   background-color: #21864a; /* darker shade of --accent */
 }
 
+/* --------- MODAL IMAGE PREVIEW ---------- */
+.image-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.image-preview-container img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--gray);
+}
+/* --------- END OF MODAL IMAGE PREVIEW ---------- */
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .main-content {

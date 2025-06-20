@@ -108,11 +108,6 @@
         </div>
 
         <!-- Page Content -->
-        <!-- <h1 class="page-title">Incident Reports Feed</h1>
-        <p class="page-description">
-          Monitor and manage all incident reports from vessels and port
-          operations
-        </p> -->
         <div class="page-content">
           <div class="page-header">
             <div class="report-prompt" id="reportPrompt">
@@ -415,8 +410,11 @@
               id="incidentImage"
               class="form-input"
               accept="image/*"
+              multiple
             />
           </div>
+          <!-- Preview container -->
+          <div id="imagePreviewContainer" class="image-preview-container"></div>
           <div class="modal-footer">
             <button class="btn btn-cancel" id="cancelIncidentBtn">
               Cancel
