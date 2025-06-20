@@ -148,4 +148,30 @@ document.addEventListener("DOMContentLoaded", function () {
       updateCarousel(currentImage);
     }
   });
+
+  // FULL SCREEN WHEN IMAGE IS CLICK
+  const incidentImages = document.querySelectorAll(".incident-image");
+  const fullscreenWrapper = document.getElementById("fullscreenImageWrapper");
+  const fullscreenImg = document.getElementById("fullscreenImage");
+  const closeBtn = document.querySelector(".close-fullscreen");
+
+  incidentImages.forEach((img) => {
+    img.addEventListener("click", () => {
+      fullscreenImg.src = img.src;
+      fullscreenWrapper.style.display = "flex";
+    });
+  });
+
+  closeBtn.addEventListener("click", () => {
+    fullscreenWrapper.style.display = "none";
+    fullscreenImg.src = ""; // clear image
+  });
+
+  // Optional: click outside image to close
+  fullscreenWrapper.addEventListener("click", (e) => {
+    if (e.target === fullscreenWrapper) {
+      fullscreenWrapper.style.display = "none";
+      fullscreenImg.src = "";
+    }
+  });
 });
