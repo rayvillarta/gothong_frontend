@@ -1,0 +1,421 @@
+:root {
+  --primary: #0a1f44;
+  --secondary: #1e3a8a;
+  --border-color: #e5e7eb;
+  --light-bg: #f9fafb;
+  --dark-gray: #6b7280;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  color: var(--primary);
+  line-height: 1.6;
+  padding: 40px;
+  max-width: 1600px;
+  margin: 0 auto;
+  background-color: #f5f7fa;
+}
+
+@media print {
+  body {
+    padding: 0;
+    margin: 0;
+    max-width: none;
+    width: 100%;
+    background-color: white;
+  }
+
+  .print-btn {
+    display: none;
+  }
+
+  @page {
+    size: landscape;
+    margin: 10mm;
+    scale: 90%; /* Scale to fit more content */
+  }
+
+  .manifest-container {
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .manifest-section {
+    page-break-inside: avoid;
+  }
+
+  table {
+    page-break-inside: auto;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tfoot {
+    display: table-footer-group;
+  }
+
+  table th,
+  table td {
+    padding: 5px 3px; /* Further reduced padding */
+    font-size: 7pt; /* Smaller font size */
+    line-height: 1.1; /* Tighter line height */
+  }
+
+  .small-text {
+    font-size: 8pt;
+  }
+
+  .info-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .signature-area {
+    page-break-inside: avoid;
+  }
+
+  .cargo-header {
+    font-size: 7pt;
+    font-weight: 700; /* Bolder headers for print */
+    padding-bottom: 4px;
+    padding-top: 4px;
+  }
+}
+
+.manifest-container {
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  background-color: white;
+  width: 100%;
+}
+
+.manifest-header {
+  background-color: var(--secondary);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  font-family: "Exo 2", sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-left: 10px;
+}
+
+.manifest-title {
+  font-family: "Exo 2", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.manifest-section {
+  padding: 25px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.manifest-section:last-child {
+  border-bottom: none;
+}
+
+.section-title {
+  font-family: "Exo 2", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: var(--secondary);
+  border-bottom: 2px solid var(--secondary);
+  padding-bottom: 8px;
+  display: inline-block;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.info-item {
+  margin-bottom: 15px;
+}
+
+.info-label {
+  color: var(--dark-gray);
+  font-size: 0.9em;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.info-value {
+  font-weight: 600;
+}
+
+.table-responsive {
+  width: 100%;
+}
+
+/* Make tables more compact for landscape printing */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  table-layout: fixed;
+}
+
+th,
+td {
+  white-space: normal;
+  word-wrap: break-word;
+  font-size: 0.9rem;
+  padding: 8px 5px;
+}
+
+/* Adjust column widths */
+th:nth-child(1),
+td:nth-child(1) {
+  width: 9%;
+} /* Container No. */
+th:nth-child(2),
+td:nth-child(2) {
+  width: 6%;
+} /* Seal No. */
+th:nth-child(3),
+td:nth-child(3) {
+  width: 9%;
+} /* B/L Number */
+th:nth-child(4),
+td:nth-child(4) {
+  width: 11%;
+} /* Shipper */
+th:nth-child(5),
+td:nth-child(5) {
+  width: 11%;
+} /* Consignee */
+th:nth-child(6),
+td:nth-child(6) {
+  width: 24%;
+} /* Description */
+th:nth-child(7),
+td:nth-child(7) {
+  width: 8%;
+} /* Weight */
+th:nth-child(8),
+td:nth-child(8) {
+  width: 8%;
+} /* Volume */
+th:nth-child(9),
+td:nth-child(9) {
+  width: 6%;
+} /* Packages */
+th:nth-child(10),
+td:nth-child(10) {
+  width: 8%;
+} /* Marks */
+
+.cargo-header {
+  font-size: 0.8rem;
+  line-height: 1.2;
+  white-space: normal;
+  height: auto;
+  vertical-align: bottom;
+  font-weight: 600;
+}
+
+th {
+  background-color: var(--light-bg);
+  text-align: left;
+  padding: 12px 15px;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+}
+
+td {
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  vertical-align: top;
+}
+
+.small-text {
+  font-size: 0.85rem;
+}
+
+.summary-box {
+  background-color: var(--light-bg);
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.summary-item:last-child {
+  margin-bottom: 0;
+}
+
+.signature-area {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.signature-box {
+  padding-top: 5px;
+}
+
+.signature-line {
+  margin-top: 70px;
+  border-top: 1px solid var(--primary);
+  padding-top: 5px;
+}
+
+.print-btn {
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 500;
+  float: right;
+  margin-bottom: 20px;
+}
+
+.print-btn:hover {
+  background-color: #172f6e;
+}
+
+@media (max-width: 1240px) {
+  body {
+    padding: 20px;
+  }
+
+  .manifest-container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  .manifest-container {
+    border-radius: 8px;
+  }
+
+  .info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .signature-area {
+    grid-template-columns: 1fr;
+  }
+
+  .logo {
+    position: static;
+    transform: none;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  .manifest-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .manifest-section {
+    padding: 15px;
+  }
+}
+
+@media print {
+  /* Additional print styles for table */
+  table {
+    table-layout: fixed;
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  th,
+  td {
+    padding: 6px 8px;
+    font-size: 8pt;
+  }
+}
+
+/* Ensure the print button is positioned correctly */
+.print-btn-container {
+  text-align: right;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Back button styling */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--secondary);
+  font-weight: 500;
+  margin-bottom: 15px;
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  color: var(--primary);
+}
+
+.back-button i {
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
+
+@media print {
+  .back-button {
+    display: none;
+  }
+}
