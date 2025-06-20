@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     icon.addEventListener("click", () => {
       const targetId = icon.getAttribute("data-target");
       const targetRow = document.getElementById(targetId);
-      const isCurrenlyOpen = targetRow.style.display === "table-row";
+      const isCurrentlyOpen = targetRow.style.display === "table-row";
 
       // COLLAPSE ALL SUBMANIFEST ROW
       document.querySelectorAll(".submanifest-row").forEach((row) => {
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         el.classList.add("fa-chevron-down");
       });
 
-      if (!isCurrenlyOpen) {
+      if (!isCurrentlyOpen) {
         targetRow.style.display = "table-row";
         icon.classList.remove("fa-chevron-down");
         icon.classList.add("fa-chevron-up");

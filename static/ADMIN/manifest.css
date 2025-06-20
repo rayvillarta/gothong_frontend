@@ -420,6 +420,33 @@ h6 {
 .submanifest-row {
   display: none;
 }
+
+/* SCROLLBAR FOR THE TABLE OF MASTERMANIFEST */
+.table-scroll-wrapper {
+  max-height: 404px;
+  min-height: 404px;
+  overflow-y: auto;
+}
+
+/* END OF SCROLLBAR FOR THE TABLE OF MASTERMANIFEST */
+
+/* SCROLLBAR FOR THE TABLE FOR SUBMANIFST */
+.submanifest-scroll-wrapper {
+  max-height: 175px; /* adjust as needed */
+  min-height: 175px;
+  overflow-y: auto;
+  overflow-x: auto;
+  padding: 0.5rem;
+}
+
+.sub-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; /* force horizontal scroll if needed */
+}
+
+/* END OF SCROLLBAR FOR THE TABLE FOR SUBMANIFEST */
+
 /* STYLES FOR THE SUBMANIFEST BUTTONS */
 .btn-sm {
   font-size: 0.85rem;
@@ -509,7 +536,6 @@ h6 {
   font-weight: 600;
   color: var(--primary);
   font-size: 0.9rem;
-  text-transform: uppercase;
 }
 
 /* FIXED WIDTH FOR THE STATUS COLUMN */
