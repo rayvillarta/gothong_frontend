@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // ---------------------------- SIDEBAR JS ----------------------------
   const sidebar = document.querySelector(".sidebar");
   const mainContent = document.querySelector(".main-content");
 
@@ -64,6 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
     mainContent.classList.add("sidebar-collapsed-content");
   }
 
+  // ---------------------------- END OF SIDEBAR JS ----------------------------
+
   // ------------------ EDIT VESSEL MODAL ------------------
   const editVesselButtons = document.querySelectorAll(".btn-icon.edit");
   const editVesselModal = document.getElementById("editVesselModal");
@@ -126,6 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
       updateEditVesselBtn.disabled = true;
     }
   });
+  // ------------------ END OF EDIT VESSEL MODAL ------------------
 
   // ------------------ SORT TABLE (STATUS) ------------------
   const statusOptions = [
@@ -198,6 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
       select.addEventListener("change", commitChange);
     });
   });
+  // ------------------ END OF SORT TABLE (STATUS) ------------------
 
   // ------------------ SORT TABLE (INCOMPLETE) ------------------
   const statusPriority = {
@@ -342,6 +347,7 @@ document.addEventListener("DOMContentLoaded", function () {
       sortedRows.forEach((row) => tbody.appendChild(row));
     });
   });
+  // ------------------ END OF SORT TABLE (INCOMPLETE) ------------------
 
   // ------------------ DELETE VESSEL CONFIRMATION MODAL ------------------
   const deleteVesselModal = document.getElementById("deleteVesselModal");
@@ -378,6 +384,8 @@ document.addEventListener("DOMContentLoaded", function () {
       closeVesselDeleteModal();
     }
   });
+
+  // ------------------ END OF DELETE VESSEL CONFIRMATION MODAL ------------------
 
   // ------------------ ADD VESSEL MODAL ------------------
   const addVesselModal = document.getElementById("addVesselModal");
@@ -467,5 +475,6 @@ document.addEventListener("DOMContentLoaded", function () {
       closeAddVesselModal();
     }
   });
+  // ------------------ END OF ADD VESSEL MODAL ------------------
 });
 // OUTSIDE DOMCONTENTLOADED
