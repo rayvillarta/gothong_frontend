@@ -23,6 +23,16 @@
     <link rel="stylesheet" href="/static/ADMIN/dashboard.css" />
   </head>
   <body>
+    <!--LOADER-->
+    <div id="customLoader" class="loader-wrapper">
+      <div class="loader">
+        <div class="dot dot1"></div>
+        <div class="dot dot2"></div>
+        <div class="dot dot3"></div>
+      </div>
+      <p class="loader-text">Loading, please wait...</p>
+    </div>
+
     <div class="container">
       <!-- Sidebar Navigation -->
       <div class="sidebar">
@@ -669,5 +679,15 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="/static/ADMIN/dashboard.js"></script>
     <script src="/static/ADMIN/dashboard-map.js"></script>
+
+    <!--LOADER JS -->
+    <script>
+      window.addEventListener("load", function () {
+        const loader = document.getElementById("customLoader");
+        if (loader) {
+          loader.style.display = "none";
+        }
+      });
+    </script>
   </body>
 </html>

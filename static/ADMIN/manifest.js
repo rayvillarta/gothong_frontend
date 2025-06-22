@@ -98,7 +98,12 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   viewMasterManifestBtn.forEach((btn) => {
     btn.addEventListener("click", () => {
-      console.log("master man!");
+      try {
+        const url = btn.getAttribute("data-url");
+        window.location.href = url;
+      } catch (e) {
+        console.error(e);
+      }
     });
   });
   console.log("master man: ", viewMasterManifestBtn);
