@@ -710,7 +710,7 @@
 
       // if page is fully loaded, show it briefly:
       if (document.readyState === "complete") {
-        setTimeout(hideLoader, 500);
+        setTimeout(hideLoader, 1500);
       } else {
         window.addEventListener("load", () => {
           setTimeout(hideLoader, 1500);
