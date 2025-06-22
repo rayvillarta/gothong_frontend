@@ -22,15 +22,30 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="/static/ADMIN/dashboard.css" />
   </head>
-  <body>
+  <body class="loading">
     <!--LOADER-->
-    <div id="customLoader" class="loader-wrapper">
-      <div class="loader">
-        <div class="dot dot1"></div>
-        <div class="dot dot2"></div>
-        <div class="dot dot3"></div>
+    <div class="loader-container" id="loader">
+      <div class="helm-container">
+        <div class="helm">
+          <div class="helm-ring">
+            <div class="helm-spoke"></div>
+            <div class="helm-spoke"></div>
+            <div class="helm-spoke"></div>
+            <div class="helm-spoke"></div>
+            <div class="helm-spoke"></div>
+            <div class="helm-spoke"></div>
+            <div class="helm-spoke"></div>
+            <div class="helm-spoke"></div>
+            <div class="helm-handle"></div>
+            <div class="helm-handle"></div>
+            <div class="helm-handle"></div>
+            <div class="helm-handle"></div>
+          </div>
+          <div class="helm-center"></div>
+        </div>
       </div>
-      <p class="loader-text">Loading, please wait...</p>
+
+      <div class="loading-text">Loading, please wait</div>
     </div>
 
     <div class="container">
@@ -682,12 +697,25 @@
 
     <!--LOADER JS -->
     <script>
-      window.addEventListener("load", function () {
-        const loader = document.getElementById("customLoader");
-        if (loader) {
+      const hideLoader = () => {
+        const loader = document.getElementById("loader");
+
+        loader.classList.add("hidden");
+        document.body.classList.remove("loading");
+
+        setTimeout(() => {
           loader.style.display = "none";
-        }
-      });
+        }, 600);
+      };
+
+      // if page is fully loaded, show it briefly:
+      if (document.readyState === "complete") {
+        setTimeout(hideLoader, 500);
+      } else {
+        window.addEventListener("load", () => {
+          setTimeout(hideLoader, 1500);
+        });
+      }
     </script>
   </body>
 </html>

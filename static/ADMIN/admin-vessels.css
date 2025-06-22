@@ -37,6 +37,43 @@ h6 {
   font-weight: 600;
 }
 
+#loaderWrapper {
+  position: fixed;
+  z-index: 2000;
+  background: var(--light);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader img {
+  width: 60px;
+  height: 60px;
+  animation: rotateShip 2s linear infinite;
+  filter: drop-shadow(0 0 5px var(--accent));
+}
+
+.loading-text {
+  margin-top: 1rem;
+  color: var(--dark-gray);
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+}
+
+@keyframes rotateShip {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .container {
   display: flex;
   min-height: 100vh;

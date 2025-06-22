@@ -23,6 +23,14 @@
     <link rel="stylesheet" href="/static/ADMIN/admin-vessels.css" />
   </head>
   <body>
+    <!--loader-->
+    <div id="loaderWrapper">
+      <div class="loader">
+        <img src="/static/nagi.jpg" alt="Loading..." />
+        <div class="loading-text">Loading Manifest...</div>
+      </div>
+    </div>
+
     <div class="container">
       <!-- Sidebar Navigation -->
       <div class="sidebar">
@@ -546,5 +554,11 @@
     </div>
 
     <script src="/static/ADMIN/admin-vessels.js"></script>
+    <script>
+      window.addEventListener("load", function () {
+        const loader = document.getElementById("loaderWrapper");
+        loader.style.display = "none";
+      });
+    </script>
   </body>
 </html>
